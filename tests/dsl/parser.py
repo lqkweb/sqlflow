@@ -136,8 +136,8 @@ def p_exit(p):
 
 
 def p_query(p):
-    """ query : SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause """
-    p[0] = QueryNode(p[2], p[4], p[5])
+    """ query : SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause AS ID """
+    p[0] = QueryNode(p[2], p[4], p[5], p[7])
 
 
 def p_insert(p):
@@ -211,7 +211,7 @@ def p_relattr(p):
                 | ID """
     if len(p) == 2:
         p[0] = RelAttr(p[1])
-    else :
+    else:
         p[0] = RelAttr(p[3], p[1])
 
 

@@ -3,7 +3,6 @@
 # from string import upper
 import ply.lex as lex
 
-
 # List of token names.
 reversed = (
     # Main
@@ -16,11 +15,11 @@ reversed = (
     # Const Value
     'NULL',
     # Command
-     'HELP', 'PRINT', 'EXIT',
+    'HELP', 'PRINT', 'EXIT',
     # Operator
     'AND', 'OR', 'IS', 'NOT',
     # Type
-    'INT', 'CHAR',
+    'INT', 'CHAR', 'AS',
 )
 
 tokens = reversed + (
@@ -38,13 +37,14 @@ t_LT = r'<'
 t_LE = r'<='
 t_NE = r'!='
 
-literals = [ '(', ')', ',', ';', '.', '+', '-', '*', '/' ]
+literals = ['(', ')', ',', ';', '.', '+', '-', '*', '/']
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
 # Ignore note
 t_ignore_note = r'\/\*.*?\*/'
+
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
@@ -75,7 +75,6 @@ def t_error(t):
 
 
 lexer = lex.lex()
-
 
 if __name__ == '__main__':
     data = input('Lexer > ')

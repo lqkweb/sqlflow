@@ -2,14 +2,14 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    LOAD
-    VIEW
-    ASC
-    IS
     ALTER
-    HELP
-    NOT
+    ASC
     DESC
+    HELP
+    IS
+    LOAD
+    NOT
+    VIEW
 
 Grammar
 
@@ -54,7 +54,7 @@ Rule 37    droptable -> DROP TABLE ID
 Rule 38    dropindex -> DROP INDEX ID ( ID )
 Rule 39    print -> PRINT ID
 Rule 40    exit -> EXIT
-Rule 41    query -> SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause
+Rule 41    query -> SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause AS ID
 Rule 42    insert -> INSERT INTO ID VALUES inservalue_list
 Rule 43    inservalue_list -> ( non_mvalue_list ) , inservalue_list
 Rule 44    inservalue_list -> ( non_mvalue_list )
@@ -115,6 +115,7 @@ ALERT                : 33 34
 ALL                  : 32
 ALTER                : 
 AND                  : 65
+AS                   : 41
 ASC                  : 
 CHAR                 : 53
 CREATE               : 22 35 36
@@ -128,7 +129,7 @@ GE                   : 84
 GRANT                : 23
 GT                   : 83
 HELP                 : 
-ID                   : 22 33 34 35 36 36 37 38 38 39 42 45 46 49 50 51 58 58 59 62
+ID                   : 22 33 34 35 36 36 37 38 38 39 41 42 45 46 49 50 51 58 58 59 62
 INDEX                : 36 38
 INSERT               : 29 42
 INT                  : 52
@@ -241,7 +242,7 @@ state 0
     (22) createuser -> . CREATE USER ID PASSWORD STRING
     (23) grantuser -> . GRANT power_list ON non_mrelation_list TO non_mrelation_list
     (24) revokeuser -> . REVOKE power_list ON non_mrelation_list FROM non_mrelation_list
-    (41) query -> . SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause
+    (41) query -> . SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause AS ID
     (42) insert -> . INSERT INTO ID VALUES inservalue_list
     (45) delete -> . DELETE FROM ID opwhere_clause
     (46) update -> . UPDATE ID SET relattr EQ relattr_or_value opwhere_clause
@@ -249,231 +250,220 @@ state 0
     (39) print -> . PRINT ID
 
     ;               reduce using rule 87 (nothing -> .)
-    CREATE          shift and go to state 27
-    DROP            shift and go to state 12
-    SHOW            shift and go to state 8
-    ALERT           shift and go to state 13
+    CREATE          shift and go to state 22
+    DROP            shift and go to state 23
+    SHOW            shift and go to state 24
+    ALERT           shift and go to state 25
     GRANT           shift and go to state 26
-    REVOKE          shift and go to state 4
-    SELECT          shift and go to state 32
-    INSERT          shift and go to state 22
-    DELETE          shift and go to state 15
-    UPDATE          shift and go to state 19
-    EXIT            shift and go to state 7
-    PRINT           shift and go to state 14
+    REVOKE          shift and go to state 27
+    SELECT          shift and go to state 28
+    INSERT          shift and go to state 29
+    DELETE          shift and go to state 30
+    UPDATE          shift and go to state 31
+    EXIT            shift and go to state 32
+    PRINT           shift and go to state 33
 
-    exit                           shift and go to state 1
-    dropindex                      shift and go to state 2
-    createindex                    shift and go to state 17
-    delete                         shift and go to state 20
-    ddl                            shift and go to state 21
-    start                          shift and go to state 3
-    print                          shift and go to state 5
-    insert                         shift and go to state 6
-    grantuser                      shift and go to state 23
-    droptable                      shift and go to state 24
-    update                         shift and go to state 25
-    query                          shift and go to state 9
-    dml                            shift and go to state 10
-    command                        shift and go to state 11
-    revokeuser                     shift and go to state 28
-    showtables                     shift and go to state 29
-    nothing                        shift and go to state 30
-    alerttable                     shift and go to state 18
-    createuser                     shift and go to state 31
-    createtable                    shift and go to state 33
-    utility                        shift and go to state 16
+    start                          shift and go to state 1
+    command                        shift and go to state 2
+    ddl                            shift and go to state 3
+    dml                            shift and go to state 4
+    utility                        shift and go to state 5
+    nothing                        shift and go to state 6
+    createtable                    shift and go to state 7
+    createindex                    shift and go to state 8
+    droptable                      shift and go to state 9
+    dropindex                      shift and go to state 10
+    showtables                     shift and go to state 11
+    alerttable                     shift and go to state 12
+    createuser                     shift and go to state 13
+    grantuser                      shift and go to state 14
+    revokeuser                     shift and go to state 15
+    query                          shift and go to state 16
+    insert                         shift and go to state 17
+    delete                         shift and go to state 18
+    update                         shift and go to state 19
+    exit                           shift and go to state 20
+    print                          shift and go to state 21
 
 state 1
-
-    (19) utility -> exit .
-
-    ;               reduce using rule 19 (utility -> exit .)
-
-
-state 2
-
-    (9) ddl -> dropindex .
-
-    ;               reduce using rule 9 (ddl -> dropindex .)
-
-
-state 3
 
     (0) S' -> start .
 
 
 
-state 4
-
-    (24) revokeuser -> REVOKE . power_list ON non_mrelation_list FROM non_mrelation_list
-    (25) power_list -> . power_list , power_type
-    (26) power_list -> . power_type
-    (27) power_type -> . SELECT
-    (28) power_type -> . UPDATE
-    (29) power_type -> . INSERT
-    (30) power_type -> . DELETE
-    (31) power_type -> . PRINT
-    (32) power_type -> . ALL
-
-    SELECT          shift and go to state 39
-    UPDATE          shift and go to state 34
-    INSERT          shift and go to state 35
-    DELETE          shift and go to state 41
-    PRINT           shift and go to state 36
-    ALL             shift and go to state 37
-
-    power_type                     shift and go to state 38
-    power_list                     shift and go to state 40
-
-state 5
-
-    (20) utility -> print .
-
-    ;               reduce using rule 20 (utility -> print .)
-
-
-state 6
-
-    (16) dml -> insert .
-
-    ;               reduce using rule 16 (dml -> insert .)
-
-
-state 7
-
-    (40) exit -> EXIT .
-
-    ;               reduce using rule 40 (exit -> EXIT .)
-
-
-state 8
-
-    (21) showtables -> SHOW . TABLES
-
-    TABLES          shift and go to state 42
-
-
-state 9
-
-    (15) dml -> query .
-
-    ;               reduce using rule 15 (dml -> query .)
-
-
-state 10
-
-    (3) command -> dml .
-
-    ;               reduce using rule 3 (command -> dml .)
-
-
-state 11
+state 2
 
     (1) start -> command . ;
 
-    ;               shift and go to state 43
+    ;               shift and go to state 34
 
 
-state 12
-
-    (37) droptable -> DROP . TABLE ID
-    (38) dropindex -> DROP . INDEX ID ( ID )
-
-    TABLE           shift and go to state 44
-    INDEX           shift and go to state 45
-
-
-state 13
-
-    (33) alerttable -> ALERT . TABLE ID ADD attrtype
-    (34) alerttable -> ALERT . TABLE ID DROP non_mrelation_list
-
-    TABLE           shift and go to state 46
-
-
-state 14
-
-    (39) print -> PRINT . ID
-
-    ID              shift and go to state 47
-
-
-state 15
-
-    (45) delete -> DELETE . FROM ID opwhere_clause
-
-    FROM            shift and go to state 48
-
-
-state 16
-
-    (4) command -> utility .
-
-    ;               reduce using rule 4 (command -> utility .)
-
-
-state 17
-
-    (7) ddl -> createindex .
-
-    ;               reduce using rule 7 (ddl -> createindex .)
-
-
-state 18
-
-    (11) ddl -> alerttable .
-
-    ;               reduce using rule 11 (ddl -> alerttable .)
-
-
-state 19
-
-    (46) update -> UPDATE . ID SET relattr EQ relattr_or_value opwhere_clause
-
-    ID              shift and go to state 49
-
-
-state 20
-
-    (17) dml -> delete .
-
-    ;               reduce using rule 17 (dml -> delete .)
-
-
-state 21
+state 3
 
     (2) command -> ddl .
 
     ;               reduce using rule 2 (command -> ddl .)
 
 
-state 22
+state 4
 
-    (42) insert -> INSERT . INTO ID VALUES inservalue_list
+    (3) command -> dml .
 
-    INTO            shift and go to state 50
-
-
-state 23
-
-    (13) ddl -> grantuser .
-
-    ;               reduce using rule 13 (ddl -> grantuser .)
+    ;               reduce using rule 3 (command -> dml .)
 
 
-state 24
+state 5
+
+    (4) command -> utility .
+
+    ;               reduce using rule 4 (command -> utility .)
+
+
+state 6
+
+    (5) command -> nothing .
+
+    ;               reduce using rule 5 (command -> nothing .)
+
+
+state 7
+
+    (6) ddl -> createtable .
+
+    ;               reduce using rule 6 (ddl -> createtable .)
+
+
+state 8
+
+    (7) ddl -> createindex .
+
+    ;               reduce using rule 7 (ddl -> createindex .)
+
+
+state 9
 
     (8) ddl -> droptable .
 
     ;               reduce using rule 8 (ddl -> droptable .)
 
 
-state 25
+state 10
+
+    (9) ddl -> dropindex .
+
+    ;               reduce using rule 9 (ddl -> dropindex .)
+
+
+state 11
+
+    (10) ddl -> showtables .
+
+    ;               reduce using rule 10 (ddl -> showtables .)
+
+
+state 12
+
+    (11) ddl -> alerttable .
+
+    ;               reduce using rule 11 (ddl -> alerttable .)
+
+
+state 13
+
+    (12) ddl -> createuser .
+
+    ;               reduce using rule 12 (ddl -> createuser .)
+
+
+state 14
+
+    (13) ddl -> grantuser .
+
+    ;               reduce using rule 13 (ddl -> grantuser .)
+
+
+state 15
+
+    (14) ddl -> revokeuser .
+
+    ;               reduce using rule 14 (ddl -> revokeuser .)
+
+
+state 16
+
+    (15) dml -> query .
+
+    ;               reduce using rule 15 (dml -> query .)
+
+
+state 17
+
+    (16) dml -> insert .
+
+    ;               reduce using rule 16 (dml -> insert .)
+
+
+state 18
+
+    (17) dml -> delete .
+
+    ;               reduce using rule 17 (dml -> delete .)
+
+
+state 19
 
     (18) dml -> update .
 
     ;               reduce using rule 18 (dml -> update .)
+
+
+state 20
+
+    (19) utility -> exit .
+
+    ;               reduce using rule 19 (utility -> exit .)
+
+
+state 21
+
+    (20) utility -> print .
+
+    ;               reduce using rule 20 (utility -> print .)
+
+
+state 22
+
+    (35) createtable -> CREATE . TABLE ID ( non_mattrtype_list )
+    (36) createindex -> CREATE . INDEX ID ( ID )
+    (22) createuser -> CREATE . USER ID PASSWORD STRING
+
+    TABLE           shift and go to state 35
+    INDEX           shift and go to state 36
+    USER            shift and go to state 37
+
+
+state 23
+
+    (37) droptable -> DROP . TABLE ID
+    (38) dropindex -> DROP . INDEX ID ( ID )
+
+    TABLE           shift and go to state 38
+    INDEX           shift and go to state 39
+
+
+state 24
+
+    (21) showtables -> SHOW . TABLES
+
+    TABLES          shift and go to state 40
+
+
+state 25
+
+    (33) alerttable -> ALERT . TABLE ID ADD attrtype
+    (34) alerttable -> ALERT . TABLE ID DROP non_mrelation_list
+
+    TABLE           shift and go to state 41
 
 
 state 26
@@ -488,58 +478,41 @@ state 26
     (31) power_type -> . PRINT
     (32) power_type -> . ALL
 
-    SELECT          shift and go to state 39
-    UPDATE          shift and go to state 34
-    INSERT          shift and go to state 35
-    DELETE          shift and go to state 41
-    PRINT           shift and go to state 36
-    ALL             shift and go to state 37
+    SELECT          shift and go to state 44
+    UPDATE          shift and go to state 45
+    INSERT          shift and go to state 46
+    DELETE          shift and go to state 47
+    PRINT           shift and go to state 48
+    ALL             shift and go to state 49
 
-    power_type                     shift and go to state 38
-    power_list                     shift and go to state 51
+    power_list                     shift and go to state 42
+    power_type                     shift and go to state 43
 
 state 27
 
-    (35) createtable -> CREATE . TABLE ID ( non_mattrtype_list )
-    (36) createindex -> CREATE . INDEX ID ( ID )
-    (22) createuser -> CREATE . USER ID PASSWORD STRING
+    (24) revokeuser -> REVOKE . power_list ON non_mrelation_list FROM non_mrelation_list
+    (25) power_list -> . power_list , power_type
+    (26) power_list -> . power_type
+    (27) power_type -> . SELECT
+    (28) power_type -> . UPDATE
+    (29) power_type -> . INSERT
+    (30) power_type -> . DELETE
+    (31) power_type -> . PRINT
+    (32) power_type -> . ALL
 
-    TABLE           shift and go to state 52
-    INDEX           shift and go to state 54
-    USER            shift and go to state 53
+    SELECT          shift and go to state 44
+    UPDATE          shift and go to state 45
+    INSERT          shift and go to state 46
+    DELETE          shift and go to state 47
+    PRINT           shift and go to state 48
+    ALL             shift and go to state 49
 
+    power_list                     shift and go to state 50
+    power_type                     shift and go to state 43
 
 state 28
 
-    (14) ddl -> revokeuser .
-
-    ;               reduce using rule 14 (ddl -> revokeuser .)
-
-
-state 29
-
-    (10) ddl -> showtables .
-
-    ;               reduce using rule 10 (ddl -> showtables .)
-
-
-state 30
-
-    (5) command -> nothing .
-
-    ;               reduce using rule 5 (command -> nothing .)
-
-
-state 31
-
-    (12) ddl -> createuser .
-
-    ;               reduce using rule 12 (ddl -> createuser .)
-
-
-state 32
-
-    (41) query -> SELECT . non_mselect_clause FROM non_mrelation_list opwhere_clause
+    (41) query -> SELECT . non_mselect_clause FROM non_mrelation_list opwhere_clause AS ID
     (54) non_mselect_clause -> . non_mrelattr_list
     (55) non_mselect_clause -> . *
     (56) non_mrelattr_list -> . relattr , non_mrelattr_list
@@ -547,53 +520,115 @@ state 32
     (58) relattr -> . ID . ID
     (59) relattr -> . ID
 
-    *               shift and go to state 56
-    ID              shift and go to state 59
+    *               shift and go to state 54
+    ID              shift and go to state 52
 
-    non_mselect_clause             shift and go to state 55
-    relattr                        shift and go to state 58
-    non_mrelattr_list              shift and go to state 57
+    non_mselect_clause             shift and go to state 51
+    non_mrelattr_list              shift and go to state 53
+    relattr                        shift and go to state 55
+
+state 29
+
+    (42) insert -> INSERT . INTO ID VALUES inservalue_list
+
+    INTO            shift and go to state 56
+
+
+state 30
+
+    (45) delete -> DELETE . FROM ID opwhere_clause
+
+    FROM            shift and go to state 57
+
+
+state 31
+
+    (46) update -> UPDATE . ID SET relattr EQ relattr_or_value opwhere_clause
+
+    ID              shift and go to state 58
+
+
+state 32
+
+    (40) exit -> EXIT .
+
+    ;               reduce using rule 40 (exit -> EXIT .)
+
 
 state 33
 
-    (6) ddl -> createtable .
+    (39) print -> PRINT . ID
 
-    ;               reduce using rule 6 (ddl -> createtable .)
+    ID              shift and go to state 59
 
 
 state 34
 
-    (28) power_type -> UPDATE .
+    (1) start -> command ; .
 
-    ON              reduce using rule 28 (power_type -> UPDATE .)
-    ,               reduce using rule 28 (power_type -> UPDATE .)
+    $end            reduce using rule 1 (start -> command ; .)
 
 
 state 35
 
-    (29) power_type -> INSERT .
+    (35) createtable -> CREATE TABLE . ID ( non_mattrtype_list )
 
-    ON              reduce using rule 29 (power_type -> INSERT .)
-    ,               reduce using rule 29 (power_type -> INSERT .)
+    ID              shift and go to state 60
 
 
 state 36
 
-    (31) power_type -> PRINT .
+    (36) createindex -> CREATE INDEX . ID ( ID )
 
-    ON              reduce using rule 31 (power_type -> PRINT .)
-    ,               reduce using rule 31 (power_type -> PRINT .)
+    ID              shift and go to state 61
 
 
 state 37
 
-    (32) power_type -> ALL .
+    (22) createuser -> CREATE USER . ID PASSWORD STRING
 
-    ON              reduce using rule 32 (power_type -> ALL .)
-    ,               reduce using rule 32 (power_type -> ALL .)
+    ID              shift and go to state 62
 
 
 state 38
+
+    (37) droptable -> DROP TABLE . ID
+
+    ID              shift and go to state 63
+
+
+state 39
+
+    (38) dropindex -> DROP INDEX . ID ( ID )
+
+    ID              shift and go to state 64
+
+
+state 40
+
+    (21) showtables -> SHOW TABLES .
+
+    ;               reduce using rule 21 (showtables -> SHOW TABLES .)
+
+
+state 41
+
+    (33) alerttable -> ALERT TABLE . ID ADD attrtype
+    (34) alerttable -> ALERT TABLE . ID DROP non_mrelation_list
+
+    ID              shift and go to state 65
+
+
+state 42
+
+    (23) grantuser -> GRANT power_list . ON non_mrelation_list TO non_mrelation_list
+    (25) power_list -> power_list . , power_type
+
+    ON              shift and go to state 66
+    ,               shift and go to state 67
+
+
+state 43
 
     (26) power_list -> power_type .
 
@@ -601,7 +636,7 @@ state 38
     ,               reduce using rule 26 (power_list -> power_type .)
 
 
-state 39
+state 44
 
     (27) power_type -> SELECT .
 
@@ -609,16 +644,23 @@ state 39
     ,               reduce using rule 27 (power_type -> SELECT .)
 
 
-state 40
+state 45
 
-    (24) revokeuser -> REVOKE power_list . ON non_mrelation_list FROM non_mrelation_list
-    (25) power_list -> power_list . , power_type
+    (28) power_type -> UPDATE .
 
-    ON              shift and go to state 61
-    ,               shift and go to state 60
+    ON              reduce using rule 28 (power_type -> UPDATE .)
+    ,               reduce using rule 28 (power_type -> UPDATE .)
 
 
-state 41
+state 46
+
+    (29) power_type -> INSERT .
+
+    ON              reduce using rule 29 (power_type -> INSERT .)
+    ,               reduce using rule 29 (power_type -> INSERT .)
+
+
+state 47
 
     (30) power_type -> DELETE .
 
@@ -626,152 +668,168 @@ state 41
     ,               reduce using rule 30 (power_type -> DELETE .)
 
 
-state 42
-
-    (21) showtables -> SHOW TABLES .
-
-    ;               reduce using rule 21 (showtables -> SHOW TABLES .)
-
-
-state 43
-
-    (1) start -> command ; .
-
-    $end            reduce using rule 1 (start -> command ; .)
-
-
-state 44
-
-    (37) droptable -> DROP TABLE . ID
-
-    ID              shift and go to state 62
-
-
-state 45
-
-    (38) dropindex -> DROP INDEX . ID ( ID )
-
-    ID              shift and go to state 63
-
-
-state 46
-
-    (33) alerttable -> ALERT TABLE . ID ADD attrtype
-    (34) alerttable -> ALERT TABLE . ID DROP non_mrelation_list
-
-    ID              shift and go to state 64
-
-
-state 47
-
-    (39) print -> PRINT ID .
-
-    ;               reduce using rule 39 (print -> PRINT ID .)
-
-
 state 48
 
-    (45) delete -> DELETE FROM . ID opwhere_clause
+    (31) power_type -> PRINT .
 
-    ID              shift and go to state 65
+    ON              reduce using rule 31 (power_type -> PRINT .)
+    ,               reduce using rule 31 (power_type -> PRINT .)
 
 
 state 49
 
-    (46) update -> UPDATE ID . SET relattr EQ relattr_or_value opwhere_clause
+    (32) power_type -> ALL .
 
-    SET             shift and go to state 66
+    ON              reduce using rule 32 (power_type -> ALL .)
+    ,               reduce using rule 32 (power_type -> ALL .)
 
 
 state 50
 
-    (42) insert -> INSERT INTO . ID VALUES inservalue_list
+    (24) revokeuser -> REVOKE power_list . ON non_mrelation_list FROM non_mrelation_list
+    (25) power_list -> power_list . , power_type
 
-    ID              shift and go to state 67
+    ON              shift and go to state 68
+    ,               shift and go to state 67
 
 
 state 51
 
-    (23) grantuser -> GRANT power_list . ON non_mrelation_list TO non_mrelation_list
-    (25) power_list -> power_list . , power_type
+    (41) query -> SELECT non_mselect_clause . FROM non_mrelation_list opwhere_clause AS ID
 
-    ON              shift and go to state 68
-    ,               shift and go to state 60
+    FROM            shift and go to state 69
 
 
 state 52
 
-    (35) createtable -> CREATE TABLE . ID ( non_mattrtype_list )
-
-    ID              shift and go to state 69
-
-
-state 53
-
-    (22) createuser -> CREATE USER . ID PASSWORD STRING
-
-    ID              shift and go to state 70
-
-
-state 54
-
-    (36) createindex -> CREATE INDEX . ID ( ID )
-
-    ID              shift and go to state 71
-
-
-state 55
-
-    (41) query -> SELECT non_mselect_clause . FROM non_mrelation_list opwhere_clause
-
-    FROM            shift and go to state 72
-
-
-state 56
-
-    (55) non_mselect_clause -> * .
-
-    FROM            reduce using rule 55 (non_mselect_clause -> * .)
-
-
-state 57
-
-    (54) non_mselect_clause -> non_mrelattr_list .
-
-    FROM            reduce using rule 54 (non_mselect_clause -> non_mrelattr_list .)
-
-
-state 58
-
-    (56) non_mrelattr_list -> relattr . , non_mrelattr_list
-    (57) non_mrelattr_list -> relattr .
-
-    ,               shift and go to state 73
-    FROM            reduce using rule 57 (non_mrelattr_list -> relattr .)
-
-
-state 59
-
     (58) relattr -> ID . . ID
     (59) relattr -> ID .
 
-    .               shift and go to state 74
+    .               shift and go to state 70
+    ,               reduce using rule 59 (relattr -> ID .)
+    FROM            reduce using rule 59 (relattr -> ID .)
     EQ              reduce using rule 59 (relattr -> ID .)
     NE              reduce using rule 59 (relattr -> ID .)
     LT              reduce using rule 59 (relattr -> ID .)
     LE              reduce using rule 59 (relattr -> ID .)
     GT              reduce using rule 59 (relattr -> ID .)
     GE              reduce using rule 59 (relattr -> ID .)
+    WHERE           reduce using rule 59 (relattr -> ID .)
+    ;               reduce using rule 59 (relattr -> ID .)
     AND             reduce using rule 59 (relattr -> ID .)
     OR              reduce using rule 59 (relattr -> ID .)
-    ;               reduce using rule 59 (relattr -> ID .)
+    AS              reduce using rule 59 (relattr -> ID .)
     )               reduce using rule 59 (relattr -> ID .)
-    ,               reduce using rule 59 (relattr -> ID .)
-    FROM            reduce using rule 59 (relattr -> ID .)
-    WHERE           reduce using rule 59 (relattr -> ID .)
+
+
+state 53
+
+    (54) non_mselect_clause -> non_mrelattr_list .
+
+    FROM            reduce using rule 54 (non_mselect_clause -> non_mrelattr_list .)
+
+
+state 54
+
+    (55) non_mselect_clause -> * .
+
+    FROM            reduce using rule 55 (non_mselect_clause -> * .)
+
+
+state 55
+
+    (56) non_mrelattr_list -> relattr . , non_mrelattr_list
+    (57) non_mrelattr_list -> relattr .
+
+    ,               shift and go to state 71
+    FROM            reduce using rule 57 (non_mrelattr_list -> relattr .)
+
+
+state 56
+
+    (42) insert -> INSERT INTO . ID VALUES inservalue_list
+
+    ID              shift and go to state 72
+
+
+state 57
+
+    (45) delete -> DELETE FROM . ID opwhere_clause
+
+    ID              shift and go to state 73
+
+
+state 58
+
+    (46) update -> UPDATE ID . SET relattr EQ relattr_or_value opwhere_clause
+
+    SET             shift and go to state 74
+
+
+state 59
+
+    (39) print -> PRINT ID .
+
+    ;               reduce using rule 39 (print -> PRINT ID .)
 
 
 state 60
+
+    (35) createtable -> CREATE TABLE ID . ( non_mattrtype_list )
+
+    (               shift and go to state 75
+
+
+state 61
+
+    (36) createindex -> CREATE INDEX ID . ( ID )
+
+    (               shift and go to state 76
+
+
+state 62
+
+    (22) createuser -> CREATE USER ID . PASSWORD STRING
+
+    PASSWORD        shift and go to state 77
+
+
+state 63
+
+    (37) droptable -> DROP TABLE ID .
+
+    ;               reduce using rule 37 (droptable -> DROP TABLE ID .)
+
+
+state 64
+
+    (38) dropindex -> DROP INDEX ID . ( ID )
+
+    (               shift and go to state 78
+
+
+state 65
+
+    (33) alerttable -> ALERT TABLE ID . ADD attrtype
+    (34) alerttable -> ALERT TABLE ID . DROP non_mrelation_list
+
+    ADD             shift and go to state 79
+    DROP            shift and go to state 80
+
+
+state 66
+
+    (23) grantuser -> GRANT power_list ON . non_mrelation_list TO non_mrelation_list
+    (60) non_mrelation_list -> . relation , non_mrelation_list
+    (61) non_mrelation_list -> . relation
+    (62) relation -> . ID
+
+    ID              shift and go to state 83
+
+    non_mrelation_list             shift and go to state 81
+    relation                       shift and go to state 82
+
+state 67
 
     (25) power_list -> power_list , . power_type
     (27) power_type -> . SELECT
@@ -781,126 +839,47 @@ state 60
     (31) power_type -> . PRINT
     (32) power_type -> . ALL
 
-    SELECT          shift and go to state 39
-    UPDATE          shift and go to state 34
-    INSERT          shift and go to state 35
-    DELETE          shift and go to state 41
-    PRINT           shift and go to state 36
-    ALL             shift and go to state 37
+    SELECT          shift and go to state 44
+    UPDATE          shift and go to state 45
+    INSERT          shift and go to state 46
+    DELETE          shift and go to state 47
+    PRINT           shift and go to state 48
+    ALL             shift and go to state 49
 
-    power_type                     shift and go to state 75
+    power_type                     shift and go to state 84
 
-state 61
+state 68
 
     (24) revokeuser -> REVOKE power_list ON . non_mrelation_list FROM non_mrelation_list
     (60) non_mrelation_list -> . relation , non_mrelation_list
     (61) non_mrelation_list -> . relation
     (62) relation -> . ID
 
-    ID              shift and go to state 77
+    ID              shift and go to state 83
 
-    non_mrelation_list             shift and go to state 78
-    relation                       shift and go to state 76
-
-state 62
-
-    (37) droptable -> DROP TABLE ID .
-
-    ;               reduce using rule 37 (droptable -> DROP TABLE ID .)
-
-
-state 63
-
-    (38) dropindex -> DROP INDEX ID . ( ID )
-
-    (               shift and go to state 79
-
-
-state 64
-
-    (33) alerttable -> ALERT TABLE ID . ADD attrtype
-    (34) alerttable -> ALERT TABLE ID . DROP non_mrelation_list
-
-    ADD             shift and go to state 80
-    DROP            shift and go to state 81
-
-
-state 65
-
-    (45) delete -> DELETE FROM ID . opwhere_clause
-    (63) opwhere_clause -> . WHERE non_mcond_list
-    (64) opwhere_clause -> . nothing
-    (87) nothing -> .
-
-    WHERE           shift and go to state 84
-    ;               reduce using rule 87 (nothing -> .)
-
-    opwhere_clause                 shift and go to state 82
-    nothing                        shift and go to state 83
-
-state 66
-
-    (46) update -> UPDATE ID SET . relattr EQ relattr_or_value opwhere_clause
-    (58) relattr -> . ID . ID
-    (59) relattr -> . ID
-
-    ID              shift and go to state 59
-
-    relattr                        shift and go to state 85
-
-state 67
-
-    (42) insert -> INSERT INTO ID . VALUES inservalue_list
-
-    VALUES          shift and go to state 86
-
-
-state 68
-
-    (23) grantuser -> GRANT power_list ON . non_mrelation_list TO non_mrelation_list
-    (60) non_mrelation_list -> . relation , non_mrelation_list
-    (61) non_mrelation_list -> . relation
-    (62) relation -> . ID
-
-    ID              shift and go to state 77
-
-    non_mrelation_list             shift and go to state 87
-    relation                       shift and go to state 76
+    non_mrelation_list             shift and go to state 85
+    relation                       shift and go to state 82
 
 state 69
 
-    (35) createtable -> CREATE TABLE ID . ( non_mattrtype_list )
-
-    (               shift and go to state 88
-
-
-state 70
-
-    (22) createuser -> CREATE USER ID . PASSWORD STRING
-
-    PASSWORD        shift and go to state 89
-
-
-state 71
-
-    (36) createindex -> CREATE INDEX ID . ( ID )
-
-    (               shift and go to state 90
-
-
-state 72
-
-    (41) query -> SELECT non_mselect_clause FROM . non_mrelation_list opwhere_clause
+    (41) query -> SELECT non_mselect_clause FROM . non_mrelation_list opwhere_clause AS ID
     (60) non_mrelation_list -> . relation , non_mrelation_list
     (61) non_mrelation_list -> . relation
     (62) relation -> . ID
 
-    ID              shift and go to state 77
+    ID              shift and go to state 83
 
-    non_mrelation_list             shift and go to state 91
-    relation                       shift and go to state 76
+    non_mrelation_list             shift and go to state 86
+    relation                       shift and go to state 82
 
-state 73
+state 70
+
+    (58) relattr -> ID . . ID
+
+    ID              shift and go to state 87
+
+
+state 71
 
     (56) non_mrelattr_list -> relattr , . non_mrelattr_list
     (56) non_mrelattr_list -> . relattr , non_mrelattr_list
@@ -908,19 +887,134 @@ state 73
     (58) relattr -> . ID . ID
     (59) relattr -> . ID
 
-    ID              shift and go to state 59
+    ID              shift and go to state 52
 
-    relattr                        shift and go to state 58
-    non_mrelattr_list              shift and go to state 92
+    relattr                        shift and go to state 55
+    non_mrelattr_list              shift and go to state 88
+
+state 72
+
+    (42) insert -> INSERT INTO ID . VALUES inservalue_list
+
+    VALUES          shift and go to state 89
+
+
+state 73
+
+    (45) delete -> DELETE FROM ID . opwhere_clause
+    (63) opwhere_clause -> . WHERE non_mcond_list
+    (64) opwhere_clause -> . nothing
+    (87) nothing -> .
+
+    WHERE           shift and go to state 91
+    ;               reduce using rule 87 (nothing -> .)
+
+    opwhere_clause                 shift and go to state 90
+    nothing                        shift and go to state 92
 
 state 74
 
-    (58) relattr -> ID . . ID
+    (46) update -> UPDATE ID SET . relattr EQ relattr_or_value opwhere_clause
+    (58) relattr -> . ID . ID
+    (59) relattr -> . ID
 
-    ID              shift and go to state 93
+    ID              shift and go to state 52
 
+    relattr                        shift and go to state 93
 
 state 75
+
+    (35) createtable -> CREATE TABLE ID ( . non_mattrtype_list )
+    (47) non_mattrtype_list -> . attrtype , non_mattrtype_list
+    (48) non_mattrtype_list -> . attrtype
+    (49) attrtype -> . ID type
+    (50) attrtype -> . ID type ( NUMBER )
+    (51) attrtype -> . PRIMARY KEY ( ID )
+
+    ID              shift and go to state 94
+    PRIMARY         shift and go to state 97
+
+    non_mattrtype_list             shift and go to state 95
+    attrtype                       shift and go to state 96
+
+state 76
+
+    (36) createindex -> CREATE INDEX ID ( . ID )
+
+    ID              shift and go to state 98
+
+
+state 77
+
+    (22) createuser -> CREATE USER ID PASSWORD . STRING
+
+    STRING          shift and go to state 99
+
+
+state 78
+
+    (38) dropindex -> DROP INDEX ID ( . ID )
+
+    ID              shift and go to state 100
+
+
+state 79
+
+    (33) alerttable -> ALERT TABLE ID ADD . attrtype
+    (49) attrtype -> . ID type
+    (50) attrtype -> . ID type ( NUMBER )
+    (51) attrtype -> . PRIMARY KEY ( ID )
+
+    ID              shift and go to state 94
+    PRIMARY         shift and go to state 97
+
+    attrtype                       shift and go to state 101
+
+state 80
+
+    (34) alerttable -> ALERT TABLE ID DROP . non_mrelation_list
+    (60) non_mrelation_list -> . relation , non_mrelation_list
+    (61) non_mrelation_list -> . relation
+    (62) relation -> . ID
+
+    ID              shift and go to state 83
+
+    non_mrelation_list             shift and go to state 102
+    relation                       shift and go to state 82
+
+state 81
+
+    (23) grantuser -> GRANT power_list ON non_mrelation_list . TO non_mrelation_list
+
+    TO              shift and go to state 103
+
+
+state 82
+
+    (60) non_mrelation_list -> relation . , non_mrelation_list
+    (61) non_mrelation_list -> relation .
+
+    ,               shift and go to state 104
+    TO              reduce using rule 61 (non_mrelation_list -> relation .)
+    FROM            reduce using rule 61 (non_mrelation_list -> relation .)
+    WHERE           reduce using rule 61 (non_mrelation_list -> relation .)
+    AS              reduce using rule 61 (non_mrelation_list -> relation .)
+    ;               reduce using rule 61 (non_mrelation_list -> relation .)
+
+
+state 83
+
+    (62) relation -> ID .
+
+    ,               reduce using rule 62 (relation -> ID .)
+    TO              reduce using rule 62 (relation -> ID .)
+    FROM            reduce using rule 62 (relation -> ID .)
+    WHERE           reduce using rule 62 (relation -> ID .)
+    AS              reduce using rule 62 (relation -> ID .)
+    ;               reduce using rule 62 (relation -> ID .)
+
+
+state 84
 
     (25) power_list -> power_list , power_type .
 
@@ -928,82 +1022,71 @@ state 75
     ,               reduce using rule 25 (power_list -> power_list , power_type .)
 
 
-state 76
-
-    (60) non_mrelation_list -> relation . , non_mrelation_list
-    (61) non_mrelation_list -> relation .
-
-    ,               shift and go to state 94
-    ;               reduce using rule 61 (non_mrelation_list -> relation .)
-    FROM            reduce using rule 61 (non_mrelation_list -> relation .)
-    TO              reduce using rule 61 (non_mrelation_list -> relation .)
-    WHERE           reduce using rule 61 (non_mrelation_list -> relation .)
-
-
-state 77
-
-    (62) relation -> ID .
-
-    ,               reduce using rule 62 (relation -> ID .)
-    TO              reduce using rule 62 (relation -> ID .)
-    ;               reduce using rule 62 (relation -> ID .)
-    WHERE           reduce using rule 62 (relation -> ID .)
-    FROM            reduce using rule 62 (relation -> ID .)
-
-
-state 78
+state 85
 
     (24) revokeuser -> REVOKE power_list ON non_mrelation_list . FROM non_mrelation_list
 
-    FROM            shift and go to state 95
+    FROM            shift and go to state 105
 
 
-state 79
+state 86
 
-    (38) dropindex -> DROP INDEX ID ( . ID )
+    (41) query -> SELECT non_mselect_clause FROM non_mrelation_list . opwhere_clause AS ID
+    (63) opwhere_clause -> . WHERE non_mcond_list
+    (64) opwhere_clause -> . nothing
+    (87) nothing -> .
 
-    ID              shift and go to state 96
+    WHERE           shift and go to state 91
+    AS              reduce using rule 87 (nothing -> .)
+
+    opwhere_clause                 shift and go to state 106
+    nothing                        shift and go to state 92
+
+state 87
+
+    (58) relattr -> ID . ID .
+
+    ,               reduce using rule 58 (relattr -> ID . ID .)
+    FROM            reduce using rule 58 (relattr -> ID . ID .)
+    EQ              reduce using rule 58 (relattr -> ID . ID .)
+    NE              reduce using rule 58 (relattr -> ID . ID .)
+    LT              reduce using rule 58 (relattr -> ID . ID .)
+    LE              reduce using rule 58 (relattr -> ID . ID .)
+    GT              reduce using rule 58 (relattr -> ID . ID .)
+    GE              reduce using rule 58 (relattr -> ID . ID .)
+    WHERE           reduce using rule 58 (relattr -> ID . ID .)
+    ;               reduce using rule 58 (relattr -> ID . ID .)
+    AND             reduce using rule 58 (relattr -> ID . ID .)
+    OR              reduce using rule 58 (relattr -> ID . ID .)
+    AS              reduce using rule 58 (relattr -> ID . ID .)
+    )               reduce using rule 58 (relattr -> ID . ID .)
 
 
-state 80
+state 88
 
-    (33) alerttable -> ALERT TABLE ID ADD . attrtype
-    (49) attrtype -> . ID type
-    (50) attrtype -> . ID type ( NUMBER )
-    (51) attrtype -> . PRIMARY KEY ( ID )
+    (56) non_mrelattr_list -> relattr , non_mrelattr_list .
 
-    ID              shift and go to state 99
-    PRIMARY         shift and go to state 98
+    FROM            reduce using rule 56 (non_mrelattr_list -> relattr , non_mrelattr_list .)
 
-    attrtype                       shift and go to state 97
 
-state 81
+state 89
 
-    (34) alerttable -> ALERT TABLE ID DROP . non_mrelation_list
-    (60) non_mrelation_list -> . relation , non_mrelation_list
-    (61) non_mrelation_list -> . relation
-    (62) relation -> . ID
+    (42) insert -> INSERT INTO ID VALUES . inservalue_list
+    (43) inservalue_list -> . ( non_mvalue_list ) , inservalue_list
+    (44) inservalue_list -> . ( non_mvalue_list )
 
-    ID              shift and go to state 77
+    (               shift and go to state 108
 
-    non_mrelation_list             shift and go to state 100
-    relation                       shift and go to state 76
+    inservalue_list                shift and go to state 107
 
-state 82
+state 90
 
     (45) delete -> DELETE FROM ID opwhere_clause .
 
     ;               reduce using rule 45 (delete -> DELETE FROM ID opwhere_clause .)
 
 
-state 83
-
-    (64) opwhere_clause -> nothing .
-
-    ;               reduce using rule 64 (opwhere_clause -> nothing .)
-
-
-state 84
+state 91
 
     (63) opwhere_clause -> WHERE . non_mcond_list
     (65) non_mcond_list -> . non_mcond_list AND non_mcond_list
@@ -1016,180 +1099,181 @@ state 84
     (58) relattr -> . ID . ID
     (59) relattr -> . ID
 
-    (               shift and go to state 102
-    ID              shift and go to state 59
+    (               shift and go to state 110
+    ID              shift and go to state 52
 
-    condition                      shift and go to state 101
-    relattr                        shift and go to state 103
-    non_mcond_list                 shift and go to state 104
-
-state 85
-
-    (46) update -> UPDATE ID SET relattr . EQ relattr_or_value opwhere_clause
-
-    EQ              shift and go to state 105
-
-
-state 86
-
-    (42) insert -> INSERT INTO ID VALUES . inservalue_list
-    (43) inservalue_list -> . ( non_mvalue_list ) , inservalue_list
-    (44) inservalue_list -> . ( non_mvalue_list )
-
-    (               shift and go to state 106
-
-    inservalue_list                shift and go to state 107
-
-state 87
-
-    (23) grantuser -> GRANT power_list ON non_mrelation_list . TO non_mrelation_list
-
-    TO              shift and go to state 108
-
-
-state 88
-
-    (35) createtable -> CREATE TABLE ID ( . non_mattrtype_list )
-    (47) non_mattrtype_list -> . attrtype , non_mattrtype_list
-    (48) non_mattrtype_list -> . attrtype
-    (49) attrtype -> . ID type
-    (50) attrtype -> . ID type ( NUMBER )
-    (51) attrtype -> . PRIMARY KEY ( ID )
-
-    ID              shift and go to state 99
-    PRIMARY         shift and go to state 98
-
-    non_mattrtype_list             shift and go to state 109
-    attrtype                       shift and go to state 110
-
-state 89
-
-    (22) createuser -> CREATE USER ID PASSWORD . STRING
-
-    STRING          shift and go to state 111
-
-
-state 90
-
-    (36) createindex -> CREATE INDEX ID ( . ID )
-
-    ID              shift and go to state 112
-
-
-state 91
-
-    (41) query -> SELECT non_mselect_clause FROM non_mrelation_list . opwhere_clause
-    (63) opwhere_clause -> . WHERE non_mcond_list
-    (64) opwhere_clause -> . nothing
-    (87) nothing -> .
-
-    WHERE           shift and go to state 84
-    ;               reduce using rule 87 (nothing -> .)
-
-    opwhere_clause                 shift and go to state 113
-    nothing                        shift and go to state 83
+    non_mcond_list                 shift and go to state 109
+    condition                      shift and go to state 111
+    relattr                        shift and go to state 112
 
 state 92
 
-    (56) non_mrelattr_list -> relattr , non_mrelattr_list .
+    (64) opwhere_clause -> nothing .
 
-    FROM            reduce using rule 56 (non_mrelattr_list -> relattr , non_mrelattr_list .)
+    ;               reduce using rule 64 (opwhere_clause -> nothing .)
+    AS              reduce using rule 64 (opwhere_clause -> nothing .)
 
 
 state 93
 
-    (58) relattr -> ID . ID .
+    (46) update -> UPDATE ID SET relattr . EQ relattr_or_value opwhere_clause
 
-    EQ              reduce using rule 58 (relattr -> ID . ID .)
-    NE              reduce using rule 58 (relattr -> ID . ID .)
-    LT              reduce using rule 58 (relattr -> ID . ID .)
-    LE              reduce using rule 58 (relattr -> ID . ID .)
-    GT              reduce using rule 58 (relattr -> ID . ID .)
-    GE              reduce using rule 58 (relattr -> ID . ID .)
-    AND             reduce using rule 58 (relattr -> ID . ID .)
-    OR              reduce using rule 58 (relattr -> ID . ID .)
-    ;               reduce using rule 58 (relattr -> ID . ID .)
-    )               reduce using rule 58 (relattr -> ID . ID .)
-    ,               reduce using rule 58 (relattr -> ID . ID .)
-    FROM            reduce using rule 58 (relattr -> ID . ID .)
-    WHERE           reduce using rule 58 (relattr -> ID . ID .)
+    EQ              shift and go to state 113
 
 
 state 94
-
-    (60) non_mrelation_list -> relation , . non_mrelation_list
-    (60) non_mrelation_list -> . relation , non_mrelation_list
-    (61) non_mrelation_list -> . relation
-    (62) relation -> . ID
-
-    ID              shift and go to state 77
-
-    non_mrelation_list             shift and go to state 114
-    relation                       shift and go to state 76
-
-state 95
-
-    (24) revokeuser -> REVOKE power_list ON non_mrelation_list FROM . non_mrelation_list
-    (60) non_mrelation_list -> . relation , non_mrelation_list
-    (61) non_mrelation_list -> . relation
-    (62) relation -> . ID
-
-    ID              shift and go to state 77
-
-    non_mrelation_list             shift and go to state 115
-    relation                       shift and go to state 76
-
-state 96
-
-    (38) dropindex -> DROP INDEX ID ( ID . )
-
-    )               shift and go to state 116
-
-
-state 97
-
-    (33) alerttable -> ALERT TABLE ID ADD attrtype .
-
-    ;               reduce using rule 33 (alerttable -> ALERT TABLE ID ADD attrtype .)
-
-
-state 98
-
-    (51) attrtype -> PRIMARY . KEY ( ID )
-
-    KEY             shift and go to state 117
-
-
-state 99
 
     (49) attrtype -> ID . type
     (50) attrtype -> ID . type ( NUMBER )
     (52) type -> . INT
     (53) type -> . CHAR
 
-    INT             shift and go to state 120
-    CHAR            shift and go to state 118
+    INT             shift and go to state 115
+    CHAR            shift and go to state 116
 
-    type                           shift and go to state 119
+    type                           shift and go to state 114
+
+state 95
+
+    (35) createtable -> CREATE TABLE ID ( non_mattrtype_list . )
+
+    )               shift and go to state 117
+
+
+state 96
+
+    (47) non_mattrtype_list -> attrtype . , non_mattrtype_list
+    (48) non_mattrtype_list -> attrtype .
+
+    ,               shift and go to state 118
+    )               reduce using rule 48 (non_mattrtype_list -> attrtype .)
+
+
+state 97
+
+    (51) attrtype -> PRIMARY . KEY ( ID )
+
+    KEY             shift and go to state 119
+
+
+state 98
+
+    (36) createindex -> CREATE INDEX ID ( ID . )
+
+    )               shift and go to state 120
+
+
+state 99
+
+    (22) createuser -> CREATE USER ID PASSWORD STRING .
+
+    ;               reduce using rule 22 (createuser -> CREATE USER ID PASSWORD STRING .)
+
 
 state 100
+
+    (38) dropindex -> DROP INDEX ID ( ID . )
+
+    )               shift and go to state 121
+
+
+state 101
+
+    (33) alerttable -> ALERT TABLE ID ADD attrtype .
+
+    ;               reduce using rule 33 (alerttable -> ALERT TABLE ID ADD attrtype .)
+
+
+state 102
 
     (34) alerttable -> ALERT TABLE ID DROP non_mrelation_list .
 
     ;               reduce using rule 34 (alerttable -> ALERT TABLE ID DROP non_mrelation_list .)
 
 
-state 101
+state 103
 
-    (68) non_mcond_list -> condition .
+    (23) grantuser -> GRANT power_list ON non_mrelation_list TO . non_mrelation_list
+    (60) non_mrelation_list -> . relation , non_mrelation_list
+    (61) non_mrelation_list -> . relation
+    (62) relation -> . ID
 
-    AND             reduce using rule 68 (non_mcond_list -> condition .)
-    OR              reduce using rule 68 (non_mcond_list -> condition .)
-    ;               reduce using rule 68 (non_mcond_list -> condition .)
-    )               reduce using rule 68 (non_mcond_list -> condition .)
+    ID              shift and go to state 83
+
+    non_mrelation_list             shift and go to state 122
+    relation                       shift and go to state 82
+
+state 104
+
+    (60) non_mrelation_list -> relation , . non_mrelation_list
+    (60) non_mrelation_list -> . relation , non_mrelation_list
+    (61) non_mrelation_list -> . relation
+    (62) relation -> . ID
+
+    ID              shift and go to state 83
+
+    relation                       shift and go to state 82
+    non_mrelation_list             shift and go to state 123
+
+state 105
+
+    (24) revokeuser -> REVOKE power_list ON non_mrelation_list FROM . non_mrelation_list
+    (60) non_mrelation_list -> . relation , non_mrelation_list
+    (61) non_mrelation_list -> . relation
+    (62) relation -> . ID
+
+    ID              shift and go to state 83
+
+    non_mrelation_list             shift and go to state 124
+    relation                       shift and go to state 82
+
+state 106
+
+    (41) query -> SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause . AS ID
+
+    AS              shift and go to state 125
 
 
-state 102
+state 107
+
+    (42) insert -> INSERT INTO ID VALUES inservalue_list .
+
+    ;               reduce using rule 42 (insert -> INSERT INTO ID VALUES inservalue_list .)
+
+
+state 108
+
+    (43) inservalue_list -> ( . non_mvalue_list ) , inservalue_list
+    (44) inservalue_list -> ( . non_mvalue_list )
+    (74) non_mvalue_list -> . value , non_mvalue_list
+    (75) non_mvalue_list -> . value
+    (76) non_mvalue_list -> . null_value , non_mvalue_list
+    (77) non_mvalue_list -> . null_value
+    (78) value -> . STRING
+    (79) value -> . NUMBER
+    (80) null_value -> . NULL
+
+    STRING          shift and go to state 129
+    NUMBER          shift and go to state 130
+    NULL            shift and go to state 131
+
+    non_mvalue_list                shift and go to state 126
+    value                          shift and go to state 127
+    null_value                     shift and go to state 128
+
+state 109
+
+    (63) opwhere_clause -> WHERE non_mcond_list .
+    (65) non_mcond_list -> non_mcond_list . AND non_mcond_list
+    (66) non_mcond_list -> non_mcond_list . OR non_mcond_list
+
+    ;               reduce using rule 63 (opwhere_clause -> WHERE non_mcond_list .)
+    AS              reduce using rule 63 (opwhere_clause -> WHERE non_mcond_list .)
+    AND             shift and go to state 132
+    OR              shift and go to state 133
+
+
+state 110
 
     (67) non_mcond_list -> ( . non_mcond_list )
     (65) non_mcond_list -> . non_mcond_list AND non_mcond_list
@@ -1202,14 +1286,25 @@ state 102
     (58) relattr -> . ID . ID
     (59) relattr -> . ID
 
-    (               shift and go to state 102
-    ID              shift and go to state 59
+    (               shift and go to state 110
+    ID              shift and go to state 52
 
-    condition                      shift and go to state 101
-    relattr                        shift and go to state 103
-    non_mcond_list                 shift and go to state 121
+    non_mcond_list                 shift and go to state 134
+    condition                      shift and go to state 111
+    relattr                        shift and go to state 112
 
-state 103
+state 111
+
+    (68) non_mcond_list -> condition .
+
+    AND             reduce using rule 68 (non_mcond_list -> condition .)
+    OR              reduce using rule 68 (non_mcond_list -> condition .)
+    ;               reduce using rule 68 (non_mcond_list -> condition .)
+    AS              reduce using rule 68 (non_mcond_list -> condition .)
+    )               reduce using rule 68 (non_mcond_list -> condition .)
+
+
+state 112
 
     (69) condition -> relattr . op relattr_or_value
     (70) condition -> relattr . EQ null_value
@@ -1221,27 +1316,16 @@ state 103
     (85) op -> . EQ
     (86) op -> . NE
 
-    EQ              shift and go to state 123
-    NE              shift and go to state 124
-    LT              shift and go to state 122
-    LE              shift and go to state 127
-    GT              shift and go to state 128
-    GE              shift and go to state 125
+    EQ              shift and go to state 136
+    NE              shift and go to state 137
+    LT              shift and go to state 138
+    LE              shift and go to state 139
+    GT              shift and go to state 140
+    GE              shift and go to state 141
 
-    op                             shift and go to state 126
+    op                             shift and go to state 135
 
-state 104
-
-    (63) opwhere_clause -> WHERE non_mcond_list .
-    (65) non_mcond_list -> non_mcond_list . AND non_mcond_list
-    (66) non_mcond_list -> non_mcond_list . OR non_mcond_list
-
-    ;               reduce using rule 63 (opwhere_clause -> WHERE non_mcond_list .)
-    AND             shift and go to state 129
-    OR              shift and go to state 130
-
-
-state 105
+state 113
 
     (46) update -> UPDATE ID SET relattr EQ . relattr_or_value opwhere_clause
     (72) relattr_or_value -> . relattr
@@ -1251,132 +1335,15 @@ state 105
     (78) value -> . STRING
     (79) value -> . NUMBER
 
-    ID              shift and go to state 59
-    STRING          shift and go to state 134
-    NUMBER          shift and go to state 135
+    ID              shift and go to state 52
+    STRING          shift and go to state 129
+    NUMBER          shift and go to state 130
 
-    relattr                        shift and go to state 133
-    value                          shift and go to state 131
-    relattr_or_value               shift and go to state 132
-
-state 106
-
-    (43) inservalue_list -> ( . non_mvalue_list ) , inservalue_list
-    (44) inservalue_list -> ( . non_mvalue_list )
-    (74) non_mvalue_list -> . value , non_mvalue_list
-    (75) non_mvalue_list -> . value
-    (76) non_mvalue_list -> . null_value , non_mvalue_list
-    (77) non_mvalue_list -> . null_value
-    (78) value -> . STRING
-    (79) value -> . NUMBER
-    (80) null_value -> . NULL
-
-    STRING          shift and go to state 134
-    NUMBER          shift and go to state 135
-    NULL            shift and go to state 138
-
-    null_value                     shift and go to state 136
-    non_mvalue_list                shift and go to state 137
-    value                          shift and go to state 139
-
-state 107
-
-    (42) insert -> INSERT INTO ID VALUES inservalue_list .
-
-    ;               reduce using rule 42 (insert -> INSERT INTO ID VALUES inservalue_list .)
-
-
-state 108
-
-    (23) grantuser -> GRANT power_list ON non_mrelation_list TO . non_mrelation_list
-    (60) non_mrelation_list -> . relation , non_mrelation_list
-    (61) non_mrelation_list -> . relation
-    (62) relation -> . ID
-
-    ID              shift and go to state 77
-
-    non_mrelation_list             shift and go to state 140
-    relation                       shift and go to state 76
-
-state 109
-
-    (35) createtable -> CREATE TABLE ID ( non_mattrtype_list . )
-
-    )               shift and go to state 141
-
-
-state 110
-
-    (47) non_mattrtype_list -> attrtype . , non_mattrtype_list
-    (48) non_mattrtype_list -> attrtype .
-
-    ,               shift and go to state 142
-    )               reduce using rule 48 (non_mattrtype_list -> attrtype .)
-
-
-state 111
-
-    (22) createuser -> CREATE USER ID PASSWORD STRING .
-
-    ;               reduce using rule 22 (createuser -> CREATE USER ID PASSWORD STRING .)
-
-
-state 112
-
-    (36) createindex -> CREATE INDEX ID ( ID . )
-
-    )               shift and go to state 143
-
-
-state 113
-
-    (41) query -> SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause .
-
-    ;               reduce using rule 41 (query -> SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause .)
-
+    relattr                        shift and go to state 142
+    relattr_or_value               shift and go to state 143
+    value                          shift and go to state 144
 
 state 114
-
-    (60) non_mrelation_list -> relation , non_mrelation_list .
-
-    ;               reduce using rule 60 (non_mrelation_list -> relation , non_mrelation_list .)
-    FROM            reduce using rule 60 (non_mrelation_list -> relation , non_mrelation_list .)
-    TO              reduce using rule 60 (non_mrelation_list -> relation , non_mrelation_list .)
-    WHERE           reduce using rule 60 (non_mrelation_list -> relation , non_mrelation_list .)
-
-
-state 115
-
-    (24) revokeuser -> REVOKE power_list ON non_mrelation_list FROM non_mrelation_list .
-
-    ;               reduce using rule 24 (revokeuser -> REVOKE power_list ON non_mrelation_list FROM non_mrelation_list .)
-
-
-state 116
-
-    (38) dropindex -> DROP INDEX ID ( ID ) .
-
-    ;               reduce using rule 38 (dropindex -> DROP INDEX ID ( ID ) .)
-
-
-state 117
-
-    (51) attrtype -> PRIMARY KEY . ( ID )
-
-    (               shift and go to state 144
-
-
-state 118
-
-    (53) type -> CHAR .
-
-    (               reduce using rule 53 (type -> CHAR .)
-    ;               reduce using rule 53 (type -> CHAR .)
-    ,               reduce using rule 53 (type -> CHAR .)
-    )               reduce using rule 53 (type -> CHAR .)
-
-
-state 119
 
     (49) attrtype -> ID type .
     (50) attrtype -> ID type . ( NUMBER )
@@ -1387,108 +1354,166 @@ state 119
     (               shift and go to state 145
 
 
-state 120
+state 115
 
     (52) type -> INT .
 
     (               reduce using rule 52 (type -> INT .)
-    ;               reduce using rule 52 (type -> INT .)
     ,               reduce using rule 52 (type -> INT .)
     )               reduce using rule 52 (type -> INT .)
+    ;               reduce using rule 52 (type -> INT .)
+
+
+state 116
+
+    (53) type -> CHAR .
+
+    (               reduce using rule 53 (type -> CHAR .)
+    ,               reduce using rule 53 (type -> CHAR .)
+    )               reduce using rule 53 (type -> CHAR .)
+    ;               reduce using rule 53 (type -> CHAR .)
+
+
+state 117
+
+    (35) createtable -> CREATE TABLE ID ( non_mattrtype_list ) .
+
+    ;               reduce using rule 35 (createtable -> CREATE TABLE ID ( non_mattrtype_list ) .)
+
+
+state 118
+
+    (47) non_mattrtype_list -> attrtype , . non_mattrtype_list
+    (47) non_mattrtype_list -> . attrtype , non_mattrtype_list
+    (48) non_mattrtype_list -> . attrtype
+    (49) attrtype -> . ID type
+    (50) attrtype -> . ID type ( NUMBER )
+    (51) attrtype -> . PRIMARY KEY ( ID )
+
+    ID              shift and go to state 94
+    PRIMARY         shift and go to state 97
+
+    attrtype                       shift and go to state 96
+    non_mattrtype_list             shift and go to state 146
+
+state 119
+
+    (51) attrtype -> PRIMARY KEY . ( ID )
+
+    (               shift and go to state 147
+
+
+state 120
+
+    (36) createindex -> CREATE INDEX ID ( ID ) .
+
+    ;               reduce using rule 36 (createindex -> CREATE INDEX ID ( ID ) .)
 
 
 state 121
 
-    (67) non_mcond_list -> ( non_mcond_list . )
-    (65) non_mcond_list -> non_mcond_list . AND non_mcond_list
-    (66) non_mcond_list -> non_mcond_list . OR non_mcond_list
+    (38) dropindex -> DROP INDEX ID ( ID ) .
 
-    )               shift and go to state 146
-    AND             shift and go to state 129
-    OR              shift and go to state 130
+    ;               reduce using rule 38 (dropindex -> DROP INDEX ID ( ID ) .)
 
 
 state 122
 
-    (81) op -> LT .
+    (23) grantuser -> GRANT power_list ON non_mrelation_list TO non_mrelation_list .
 
-    ID              reduce using rule 81 (op -> LT .)
-    STRING          reduce using rule 81 (op -> LT .)
-    NUMBER          reduce using rule 81 (op -> LT .)
+    ;               reduce using rule 23 (grantuser -> GRANT power_list ON non_mrelation_list TO non_mrelation_list .)
 
 
 state 123
 
-    (70) condition -> relattr EQ . null_value
-    (85) op -> EQ .
-    (80) null_value -> . NULL
+    (60) non_mrelation_list -> relation , non_mrelation_list .
 
-    ID              reduce using rule 85 (op -> EQ .)
-    STRING          reduce using rule 85 (op -> EQ .)
-    NUMBER          reduce using rule 85 (op -> EQ .)
-    NULL            shift and go to state 138
+    TO              reduce using rule 60 (non_mrelation_list -> relation , non_mrelation_list .)
+    FROM            reduce using rule 60 (non_mrelation_list -> relation , non_mrelation_list .)
+    WHERE           reduce using rule 60 (non_mrelation_list -> relation , non_mrelation_list .)
+    AS              reduce using rule 60 (non_mrelation_list -> relation , non_mrelation_list .)
+    ;               reduce using rule 60 (non_mrelation_list -> relation , non_mrelation_list .)
 
-    null_value                     shift and go to state 147
 
 state 124
 
-    (71) condition -> relattr NE . null_value
-    (86) op -> NE .
-    (80) null_value -> . NULL
+    (24) revokeuser -> REVOKE power_list ON non_mrelation_list FROM non_mrelation_list .
 
-    ID              reduce using rule 86 (op -> NE .)
-    STRING          reduce using rule 86 (op -> NE .)
-    NUMBER          reduce using rule 86 (op -> NE .)
-    NULL            shift and go to state 138
+    ;               reduce using rule 24 (revokeuser -> REVOKE power_list ON non_mrelation_list FROM non_mrelation_list .)
 
-    null_value                     shift and go to state 148
 
 state 125
 
-    (84) op -> GE .
+    (41) query -> SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause AS . ID
 
-    ID              reduce using rule 84 (op -> GE .)
-    STRING          reduce using rule 84 (op -> GE .)
-    NUMBER          reduce using rule 84 (op -> GE .)
+    ID              shift and go to state 148
 
 
 state 126
 
-    (69) condition -> relattr op . relattr_or_value
-    (72) relattr_or_value -> . relattr
-    (73) relattr_or_value -> . value
-    (58) relattr -> . ID . ID
-    (59) relattr -> . ID
-    (78) value -> . STRING
-    (79) value -> . NUMBER
+    (43) inservalue_list -> ( non_mvalue_list . ) , inservalue_list
+    (44) inservalue_list -> ( non_mvalue_list . )
 
-    ID              shift and go to state 59
-    STRING          shift and go to state 134
-    NUMBER          shift and go to state 135
+    )               shift and go to state 149
 
-    relattr                        shift and go to state 133
-    value                          shift and go to state 131
-    relattr_or_value               shift and go to state 149
 
 state 127
 
-    (82) op -> LE .
+    (74) non_mvalue_list -> value . , non_mvalue_list
+    (75) non_mvalue_list -> value .
 
-    ID              reduce using rule 82 (op -> LE .)
-    STRING          reduce using rule 82 (op -> LE .)
-    NUMBER          reduce using rule 82 (op -> LE .)
+    ,               shift and go to state 150
+    )               reduce using rule 75 (non_mvalue_list -> value .)
 
 
 state 128
 
-    (83) op -> GT .
+    (76) non_mvalue_list -> null_value . , non_mvalue_list
+    (77) non_mvalue_list -> null_value .
 
-    ID              reduce using rule 83 (op -> GT .)
-    STRING          reduce using rule 83 (op -> GT .)
-    NUMBER          reduce using rule 83 (op -> GT .)
+    ,               shift and go to state 151
+    )               reduce using rule 77 (non_mvalue_list -> null_value .)
 
 
 state 129
+
+    (78) value -> STRING .
+
+    ,               reduce using rule 78 (value -> STRING .)
+    )               reduce using rule 78 (value -> STRING .)
+    WHERE           reduce using rule 78 (value -> STRING .)
+    ;               reduce using rule 78 (value -> STRING .)
+    AND             reduce using rule 78 (value -> STRING .)
+    OR              reduce using rule 78 (value -> STRING .)
+    AS              reduce using rule 78 (value -> STRING .)
+
+
+state 130
+
+    (79) value -> NUMBER .
+
+    ,               reduce using rule 79 (value -> NUMBER .)
+    )               reduce using rule 79 (value -> NUMBER .)
+    WHERE           reduce using rule 79 (value -> NUMBER .)
+    ;               reduce using rule 79 (value -> NUMBER .)
+    AND             reduce using rule 79 (value -> NUMBER .)
+    OR              reduce using rule 79 (value -> NUMBER .)
+    AS              reduce using rule 79 (value -> NUMBER .)
+
+
+state 131
+
+    (80) null_value -> NULL .
+
+    ,               reduce using rule 80 (null_value -> NULL .)
+    )               reduce using rule 80 (null_value -> NULL .)
+    AND             reduce using rule 80 (null_value -> NULL .)
+    OR              reduce using rule 80 (null_value -> NULL .)
+    ;               reduce using rule 80 (null_value -> NULL .)
+    AS              reduce using rule 80 (null_value -> NULL .)
+
+
+state 132
 
     (65) non_mcond_list -> non_mcond_list AND . non_mcond_list
     (65) non_mcond_list -> . non_mcond_list AND non_mcond_list
@@ -1501,14 +1526,14 @@ state 129
     (58) relattr -> . ID . ID
     (59) relattr -> . ID
 
-    (               shift and go to state 102
-    ID              shift and go to state 59
+    (               shift and go to state 110
+    ID              shift and go to state 52
 
-    condition                      shift and go to state 101
-    relattr                        shift and go to state 103
-    non_mcond_list                 shift and go to state 150
+    non_mcond_list                 shift and go to state 152
+    condition                      shift and go to state 111
+    relattr                        shift and go to state 112
 
-state 130
+state 133
 
     (66) non_mcond_list -> non_mcond_list OR . non_mcond_list
     (65) non_mcond_list -> . non_mcond_list AND non_mcond_list
@@ -1521,265 +1546,179 @@ state 130
     (58) relattr -> . ID . ID
     (59) relattr -> . ID
 
-    (               shift and go to state 102
-    ID              shift and go to state 59
+    (               shift and go to state 110
+    ID              shift and go to state 52
 
-    condition                      shift and go to state 101
-    relattr                        shift and go to state 103
-    non_mcond_list                 shift and go to state 151
+    non_mcond_list                 shift and go to state 153
+    condition                      shift and go to state 111
+    relattr                        shift and go to state 112
 
-state 131
+state 134
 
-    (73) relattr_or_value -> value .
+    (67) non_mcond_list -> ( non_mcond_list . )
+    (65) non_mcond_list -> non_mcond_list . AND non_mcond_list
+    (66) non_mcond_list -> non_mcond_list . OR non_mcond_list
 
-    AND             reduce using rule 73 (relattr_or_value -> value .)
-    OR              reduce using rule 73 (relattr_or_value -> value .)
-    ;               reduce using rule 73 (relattr_or_value -> value .)
-    )               reduce using rule 73 (relattr_or_value -> value .)
-    WHERE           reduce using rule 73 (relattr_or_value -> value .)
+    )               shift and go to state 154
+    AND             shift and go to state 132
+    OR              shift and go to state 133
 
 
-state 132
+state 135
+
+    (69) condition -> relattr op . relattr_or_value
+    (72) relattr_or_value -> . relattr
+    (73) relattr_or_value -> . value
+    (58) relattr -> . ID . ID
+    (59) relattr -> . ID
+    (78) value -> . STRING
+    (79) value -> . NUMBER
+
+    ID              shift and go to state 52
+    STRING          shift and go to state 129
+    NUMBER          shift and go to state 130
+
+    relattr                        shift and go to state 142
+    relattr_or_value               shift and go to state 155
+    value                          shift and go to state 144
+
+state 136
+
+    (70) condition -> relattr EQ . null_value
+    (85) op -> EQ .
+    (80) null_value -> . NULL
+
+    ID              reduce using rule 85 (op -> EQ .)
+    STRING          reduce using rule 85 (op -> EQ .)
+    NUMBER          reduce using rule 85 (op -> EQ .)
+    NULL            shift and go to state 131
+
+    null_value                     shift and go to state 156
+
+state 137
+
+    (71) condition -> relattr NE . null_value
+    (86) op -> NE .
+    (80) null_value -> . NULL
+
+    ID              reduce using rule 86 (op -> NE .)
+    STRING          reduce using rule 86 (op -> NE .)
+    NUMBER          reduce using rule 86 (op -> NE .)
+    NULL            shift and go to state 131
+
+    null_value                     shift and go to state 157
+
+state 138
+
+    (81) op -> LT .
+
+    ID              reduce using rule 81 (op -> LT .)
+    STRING          reduce using rule 81 (op -> LT .)
+    NUMBER          reduce using rule 81 (op -> LT .)
+
+
+state 139
+
+    (82) op -> LE .
+
+    ID              reduce using rule 82 (op -> LE .)
+    STRING          reduce using rule 82 (op -> LE .)
+    NUMBER          reduce using rule 82 (op -> LE .)
+
+
+state 140
+
+    (83) op -> GT .
+
+    ID              reduce using rule 83 (op -> GT .)
+    STRING          reduce using rule 83 (op -> GT .)
+    NUMBER          reduce using rule 83 (op -> GT .)
+
+
+state 141
+
+    (84) op -> GE .
+
+    ID              reduce using rule 84 (op -> GE .)
+    STRING          reduce using rule 84 (op -> GE .)
+    NUMBER          reduce using rule 84 (op -> GE .)
+
+
+state 142
+
+    (72) relattr_or_value -> relattr .
+
+    WHERE           reduce using rule 72 (relattr_or_value -> relattr .)
+    ;               reduce using rule 72 (relattr_or_value -> relattr .)
+    AND             reduce using rule 72 (relattr_or_value -> relattr .)
+    OR              reduce using rule 72 (relattr_or_value -> relattr .)
+    AS              reduce using rule 72 (relattr_or_value -> relattr .)
+    )               reduce using rule 72 (relattr_or_value -> relattr .)
+
+
+state 143
 
     (46) update -> UPDATE ID SET relattr EQ relattr_or_value . opwhere_clause
     (63) opwhere_clause -> . WHERE non_mcond_list
     (64) opwhere_clause -> . nothing
     (87) nothing -> .
 
-    WHERE           shift and go to state 84
+    WHERE           shift and go to state 91
     ;               reduce using rule 87 (nothing -> .)
 
-    opwhere_clause                 shift and go to state 152
-    nothing                        shift and go to state 83
-
-state 133
-
-    (72) relattr_or_value -> relattr .
-
-    AND             reduce using rule 72 (relattr_or_value -> relattr .)
-    OR              reduce using rule 72 (relattr_or_value -> relattr .)
-    ;               reduce using rule 72 (relattr_or_value -> relattr .)
-    )               reduce using rule 72 (relattr_or_value -> relattr .)
-    WHERE           reduce using rule 72 (relattr_or_value -> relattr .)
-
-
-state 134
-
-    (78) value -> STRING .
-
-    WHERE           reduce using rule 78 (value -> STRING .)
-    ;               reduce using rule 78 (value -> STRING .)
-    AND             reduce using rule 78 (value -> STRING .)
-    OR              reduce using rule 78 (value -> STRING .)
-    )               reduce using rule 78 (value -> STRING .)
-    ,               reduce using rule 78 (value -> STRING .)
-
-
-state 135
-
-    (79) value -> NUMBER .
-
-    WHERE           reduce using rule 79 (value -> NUMBER .)
-    ;               reduce using rule 79 (value -> NUMBER .)
-    AND             reduce using rule 79 (value -> NUMBER .)
-    OR              reduce using rule 79 (value -> NUMBER .)
-    )               reduce using rule 79 (value -> NUMBER .)
-    ,               reduce using rule 79 (value -> NUMBER .)
-
-
-state 136
-
-    (76) non_mvalue_list -> null_value . , non_mvalue_list
-    (77) non_mvalue_list -> null_value .
-
-    ,               shift and go to state 153
-    )               reduce using rule 77 (non_mvalue_list -> null_value .)
-
-
-state 137
-
-    (43) inservalue_list -> ( non_mvalue_list . ) , inservalue_list
-    (44) inservalue_list -> ( non_mvalue_list . )
-
-    )               shift and go to state 154
-
-
-state 138
-
-    (80) null_value -> NULL .
-
-    ,               reduce using rule 80 (null_value -> NULL .)
-    )               reduce using rule 80 (null_value -> NULL .)
-    AND             reduce using rule 80 (null_value -> NULL .)
-    OR              reduce using rule 80 (null_value -> NULL .)
-    ;               reduce using rule 80 (null_value -> NULL .)
-
-
-state 139
-
-    (74) non_mvalue_list -> value . , non_mvalue_list
-    (75) non_mvalue_list -> value .
-
-    ,               shift and go to state 155
-    )               reduce using rule 75 (non_mvalue_list -> value .)
-
-
-state 140
-
-    (23) grantuser -> GRANT power_list ON non_mrelation_list TO non_mrelation_list .
-
-    ;               reduce using rule 23 (grantuser -> GRANT power_list ON non_mrelation_list TO non_mrelation_list .)
-
-
-state 141
-
-    (35) createtable -> CREATE TABLE ID ( non_mattrtype_list ) .
-
-    ;               reduce using rule 35 (createtable -> CREATE TABLE ID ( non_mattrtype_list ) .)
-
-
-state 142
-
-    (47) non_mattrtype_list -> attrtype , . non_mattrtype_list
-    (47) non_mattrtype_list -> . attrtype , non_mattrtype_list
-    (48) non_mattrtype_list -> . attrtype
-    (49) attrtype -> . ID type
-    (50) attrtype -> . ID type ( NUMBER )
-    (51) attrtype -> . PRIMARY KEY ( ID )
-
-    ID              shift and go to state 99
-    PRIMARY         shift and go to state 98
-
-    attrtype                       shift and go to state 110
-    non_mattrtype_list             shift and go to state 156
-
-state 143
-
-    (36) createindex -> CREATE INDEX ID ( ID ) .
-
-    ;               reduce using rule 36 (createindex -> CREATE INDEX ID ( ID ) .)
-
+    opwhere_clause                 shift and go to state 158
+    nothing                        shift and go to state 92
 
 state 144
 
-    (51) attrtype -> PRIMARY KEY ( . ID )
+    (73) relattr_or_value -> value .
 
-    ID              shift and go to state 157
+    WHERE           reduce using rule 73 (relattr_or_value -> value .)
+    ;               reduce using rule 73 (relattr_or_value -> value .)
+    AND             reduce using rule 73 (relattr_or_value -> value .)
+    OR              reduce using rule 73 (relattr_or_value -> value .)
+    AS              reduce using rule 73 (relattr_or_value -> value .)
+    )               reduce using rule 73 (relattr_or_value -> value .)
 
 
 state 145
 
     (50) attrtype -> ID type ( . NUMBER )
 
-    NUMBER          shift and go to state 158
+    NUMBER          shift and go to state 159
 
 
 state 146
 
-    (67) non_mcond_list -> ( non_mcond_list ) .
+    (47) non_mattrtype_list -> attrtype , non_mattrtype_list .
 
-    AND             reduce using rule 67 (non_mcond_list -> ( non_mcond_list ) .)
-    OR              reduce using rule 67 (non_mcond_list -> ( non_mcond_list ) .)
-    ;               reduce using rule 67 (non_mcond_list -> ( non_mcond_list ) .)
-    )               reduce using rule 67 (non_mcond_list -> ( non_mcond_list ) .)
+    )               reduce using rule 47 (non_mattrtype_list -> attrtype , non_mattrtype_list .)
 
 
 state 147
 
-    (70) condition -> relattr EQ null_value .
+    (51) attrtype -> PRIMARY KEY ( . ID )
 
-    AND             reduce using rule 70 (condition -> relattr EQ null_value .)
-    OR              reduce using rule 70 (condition -> relattr EQ null_value .)
-    ;               reduce using rule 70 (condition -> relattr EQ null_value .)
-    )               reduce using rule 70 (condition -> relattr EQ null_value .)
+    ID              shift and go to state 160
 
 
 state 148
 
-    (71) condition -> relattr NE null_value .
+    (41) query -> SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause AS ID .
 
-    AND             reduce using rule 71 (condition -> relattr NE null_value .)
-    OR              reduce using rule 71 (condition -> relattr NE null_value .)
-    ;               reduce using rule 71 (condition -> relattr NE null_value .)
-    )               reduce using rule 71 (condition -> relattr NE null_value .)
+    ;               reduce using rule 41 (query -> SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause AS ID .)
 
 
 state 149
 
-    (69) condition -> relattr op relattr_or_value .
-
-    AND             reduce using rule 69 (condition -> relattr op relattr_or_value .)
-    OR              reduce using rule 69 (condition -> relattr op relattr_or_value .)
-    ;               reduce using rule 69 (condition -> relattr op relattr_or_value .)
-    )               reduce using rule 69 (condition -> relattr op relattr_or_value .)
-
-
-state 150
-
-    (65) non_mcond_list -> non_mcond_list AND non_mcond_list .
-    (65) non_mcond_list -> non_mcond_list . AND non_mcond_list
-    (66) non_mcond_list -> non_mcond_list . OR non_mcond_list
-
-    AND             reduce using rule 65 (non_mcond_list -> non_mcond_list AND non_mcond_list .)
-    OR              reduce using rule 65 (non_mcond_list -> non_mcond_list AND non_mcond_list .)
-    ;               reduce using rule 65 (non_mcond_list -> non_mcond_list AND non_mcond_list .)
-    )               reduce using rule 65 (non_mcond_list -> non_mcond_list AND non_mcond_list .)
-
-  ! AND             [ shift and go to state 129 ]
-  ! OR              [ shift and go to state 130 ]
-
-
-state 151
-
-    (66) non_mcond_list -> non_mcond_list OR non_mcond_list .
-    (65) non_mcond_list -> non_mcond_list . AND non_mcond_list
-    (66) non_mcond_list -> non_mcond_list . OR non_mcond_list
-
-    OR              reduce using rule 66 (non_mcond_list -> non_mcond_list OR non_mcond_list .)
-    ;               reduce using rule 66 (non_mcond_list -> non_mcond_list OR non_mcond_list .)
-    )               reduce using rule 66 (non_mcond_list -> non_mcond_list OR non_mcond_list .)
-    AND             shift and go to state 129
-
-  ! AND             [ reduce using rule 66 (non_mcond_list -> non_mcond_list OR non_mcond_list .) ]
-  ! OR              [ shift and go to state 130 ]
-
-
-state 152
-
-    (46) update -> UPDATE ID SET relattr EQ relattr_or_value opwhere_clause .
-
-    ;               reduce using rule 46 (update -> UPDATE ID SET relattr EQ relattr_or_value opwhere_clause .)
-
-
-state 153
-
-    (76) non_mvalue_list -> null_value , . non_mvalue_list
-    (74) non_mvalue_list -> . value , non_mvalue_list
-    (75) non_mvalue_list -> . value
-    (76) non_mvalue_list -> . null_value , non_mvalue_list
-    (77) non_mvalue_list -> . null_value
-    (78) value -> . STRING
-    (79) value -> . NUMBER
-    (80) null_value -> . NULL
-
-    STRING          shift and go to state 134
-    NUMBER          shift and go to state 135
-    NULL            shift and go to state 138
-
-    null_value                     shift and go to state 136
-    non_mvalue_list                shift and go to state 159
-    value                          shift and go to state 139
-
-state 154
-
     (43) inservalue_list -> ( non_mvalue_list ) . , inservalue_list
     (44) inservalue_list -> ( non_mvalue_list ) .
 
-    ,               shift and go to state 160
+    ,               shift and go to state 161
     ;               reduce using rule 44 (inservalue_list -> ( non_mvalue_list ) .)
 
 
-state 155
+state 150
 
     (74) non_mvalue_list -> value , . non_mvalue_list
     (74) non_mvalue_list -> . value , non_mvalue_list
@@ -1790,69 +1729,155 @@ state 155
     (79) value -> . NUMBER
     (80) null_value -> . NULL
 
-    STRING          shift and go to state 134
-    NUMBER          shift and go to state 135
-    NULL            shift and go to state 138
+    STRING          shift and go to state 129
+    NUMBER          shift and go to state 130
+    NULL            shift and go to state 131
 
-    null_value                     shift and go to state 136
-    non_mvalue_list                shift and go to state 161
-    value                          shift and go to state 139
+    value                          shift and go to state 127
+    non_mvalue_list                shift and go to state 162
+    null_value                     shift and go to state 128
+
+state 151
+
+    (76) non_mvalue_list -> null_value , . non_mvalue_list
+    (74) non_mvalue_list -> . value , non_mvalue_list
+    (75) non_mvalue_list -> . value
+    (76) non_mvalue_list -> . null_value , non_mvalue_list
+    (77) non_mvalue_list -> . null_value
+    (78) value -> . STRING
+    (79) value -> . NUMBER
+    (80) null_value -> . NULL
+
+    STRING          shift and go to state 129
+    NUMBER          shift and go to state 130
+    NULL            shift and go to state 131
+
+    null_value                     shift and go to state 128
+    non_mvalue_list                shift and go to state 163
+    value                          shift and go to state 127
+
+state 152
+
+    (65) non_mcond_list -> non_mcond_list AND non_mcond_list .
+    (65) non_mcond_list -> non_mcond_list . AND non_mcond_list
+    (66) non_mcond_list -> non_mcond_list . OR non_mcond_list
+
+    AND             reduce using rule 65 (non_mcond_list -> non_mcond_list AND non_mcond_list .)
+    OR              reduce using rule 65 (non_mcond_list -> non_mcond_list AND non_mcond_list .)
+    ;               reduce using rule 65 (non_mcond_list -> non_mcond_list AND non_mcond_list .)
+    AS              reduce using rule 65 (non_mcond_list -> non_mcond_list AND non_mcond_list .)
+    )               reduce using rule 65 (non_mcond_list -> non_mcond_list AND non_mcond_list .)
+
+  ! AND             [ shift and go to state 132 ]
+  ! OR              [ shift and go to state 133 ]
+
+
+state 153
+
+    (66) non_mcond_list -> non_mcond_list OR non_mcond_list .
+    (65) non_mcond_list -> non_mcond_list . AND non_mcond_list
+    (66) non_mcond_list -> non_mcond_list . OR non_mcond_list
+
+    OR              reduce using rule 66 (non_mcond_list -> non_mcond_list OR non_mcond_list .)
+    ;               reduce using rule 66 (non_mcond_list -> non_mcond_list OR non_mcond_list .)
+    AS              reduce using rule 66 (non_mcond_list -> non_mcond_list OR non_mcond_list .)
+    )               reduce using rule 66 (non_mcond_list -> non_mcond_list OR non_mcond_list .)
+    AND             shift and go to state 132
+
+  ! AND             [ reduce using rule 66 (non_mcond_list -> non_mcond_list OR non_mcond_list .) ]
+  ! OR              [ shift and go to state 133 ]
+
+
+state 154
+
+    (67) non_mcond_list -> ( non_mcond_list ) .
+
+    AND             reduce using rule 67 (non_mcond_list -> ( non_mcond_list ) .)
+    OR              reduce using rule 67 (non_mcond_list -> ( non_mcond_list ) .)
+    ;               reduce using rule 67 (non_mcond_list -> ( non_mcond_list ) .)
+    AS              reduce using rule 67 (non_mcond_list -> ( non_mcond_list ) .)
+    )               reduce using rule 67 (non_mcond_list -> ( non_mcond_list ) .)
+
+
+state 155
+
+    (69) condition -> relattr op relattr_or_value .
+
+    AND             reduce using rule 69 (condition -> relattr op relattr_or_value .)
+    OR              reduce using rule 69 (condition -> relattr op relattr_or_value .)
+    ;               reduce using rule 69 (condition -> relattr op relattr_or_value .)
+    AS              reduce using rule 69 (condition -> relattr op relattr_or_value .)
+    )               reduce using rule 69 (condition -> relattr op relattr_or_value .)
+
 
 state 156
 
-    (47) non_mattrtype_list -> attrtype , non_mattrtype_list .
+    (70) condition -> relattr EQ null_value .
 
-    )               reduce using rule 47 (non_mattrtype_list -> attrtype , non_mattrtype_list .)
+    AND             reduce using rule 70 (condition -> relattr EQ null_value .)
+    OR              reduce using rule 70 (condition -> relattr EQ null_value .)
+    ;               reduce using rule 70 (condition -> relattr EQ null_value .)
+    AS              reduce using rule 70 (condition -> relattr EQ null_value .)
+    )               reduce using rule 70 (condition -> relattr EQ null_value .)
 
 
 state 157
 
-    (51) attrtype -> PRIMARY KEY ( ID . )
+    (71) condition -> relattr NE null_value .
 
-    )               shift and go to state 162
+    AND             reduce using rule 71 (condition -> relattr NE null_value .)
+    OR              reduce using rule 71 (condition -> relattr NE null_value .)
+    ;               reduce using rule 71 (condition -> relattr NE null_value .)
+    AS              reduce using rule 71 (condition -> relattr NE null_value .)
+    )               reduce using rule 71 (condition -> relattr NE null_value .)
 
 
 state 158
 
-    (50) attrtype -> ID type ( NUMBER . )
+    (46) update -> UPDATE ID SET relattr EQ relattr_or_value opwhere_clause .
 
-    )               shift and go to state 163
+    ;               reduce using rule 46 (update -> UPDATE ID SET relattr EQ relattr_or_value opwhere_clause .)
 
 
 state 159
 
-    (76) non_mvalue_list -> null_value , non_mvalue_list .
+    (50) attrtype -> ID type ( NUMBER . )
 
-    )               reduce using rule 76 (non_mvalue_list -> null_value , non_mvalue_list .)
+    )               shift and go to state 164
 
 
 state 160
+
+    (51) attrtype -> PRIMARY KEY ( ID . )
+
+    )               shift and go to state 165
+
+
+state 161
 
     (43) inservalue_list -> ( non_mvalue_list ) , . inservalue_list
     (43) inservalue_list -> . ( non_mvalue_list ) , inservalue_list
     (44) inservalue_list -> . ( non_mvalue_list )
 
-    (               shift and go to state 106
+    (               shift and go to state 108
 
-    inservalue_list                shift and go to state 164
+    inservalue_list                shift and go to state 166
 
-state 161
+state 162
 
     (74) non_mvalue_list -> value , non_mvalue_list .
 
     )               reduce using rule 74 (non_mvalue_list -> value , non_mvalue_list .)
 
 
-state 162
-
-    (51) attrtype -> PRIMARY KEY ( ID ) .
-
-    ,               reduce using rule 51 (attrtype -> PRIMARY KEY ( ID ) .)
-    )               reduce using rule 51 (attrtype -> PRIMARY KEY ( ID ) .)
-    ;               reduce using rule 51 (attrtype -> PRIMARY KEY ( ID ) .)
-
-
 state 163
+
+    (76) non_mvalue_list -> null_value , non_mvalue_list .
+
+    )               reduce using rule 76 (non_mvalue_list -> null_value , non_mvalue_list .)
+
+
+state 164
 
     (50) attrtype -> ID type ( NUMBER ) .
 
@@ -1861,7 +1886,16 @@ state 163
     ;               reduce using rule 50 (attrtype -> ID type ( NUMBER ) .)
 
 
-state 164
+state 165
+
+    (51) attrtype -> PRIMARY KEY ( ID ) .
+
+    ,               reduce using rule 51 (attrtype -> PRIMARY KEY ( ID ) .)
+    )               reduce using rule 51 (attrtype -> PRIMARY KEY ( ID ) .)
+    ;               reduce using rule 51 (attrtype -> PRIMARY KEY ( ID ) .)
+
+
+state 166
 
     (43) inservalue_list -> ( non_mvalue_list ) , inservalue_list .
 

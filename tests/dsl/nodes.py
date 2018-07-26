@@ -1,6 +1,4 @@
 # coding=utf-8
-# Created by Tian Yuanhao on 2016/4/5.
-# from string import upper
 
 
 class NodeType:
@@ -26,11 +24,12 @@ class NodeType:
 
 
 class QueryNode:
-    def __init__(self, select_list, from_list, where_list):
+    def __init__(self, select_list, from_list, where_list, table_id):
         self.type = NodeType.select
         self.select_list = select_list
         self.from_list = from_list
         self.where_list = where_list
+        self.table_id = table_id
 
 
 class InsertNode:
