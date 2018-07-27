@@ -32,6 +32,14 @@ class QueryNode:
         self.table_id = table_id
 
 
+class LoadNode:
+    def __init__(self, load_list, from_list, where_list, table_id):
+        self.type = NodeType.select
+        self.select_list = load_list
+        self.from_list = from_list
+        self.where_list = where_list
+        self.table_id = table_id
+
 class InsertNode:
     def __init__(self, table_name, value_list):
         self.type = NodeType.insert

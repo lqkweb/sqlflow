@@ -44,8 +44,8 @@ def exec_sql(sql, spark):
 
 if __name__ == '__main__':
     spark = PysparkPro().pysparkpro
-    # sql = input("请输入>")
-    exec_sql(select_test, spark)
+    sql = input("请输入>")
+    exec_sql(sql, spark)
 # exec_sql("drop user tyh password 'tyh';")
 # exec_sql("insert into big values(1, 1), (2 ,2);")
 
