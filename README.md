@@ -1,10 +1,10 @@
 ##### 项目git：https://github.com/lqkweb/sqlflow
 
 # SQLflow (python3+)
-Sqlflow based on python development, support to Spark, Flink, etc as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
+SQLflow based on python development, support to Spark, Flink, etc as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
 
 # 项目目标
-基于python开发, 支持通过写sql的方式,运行spark, 机器学习算法, 爬虫。
+基于python开发, 支持通过写sql的方式操作分布式集群, 运行spark, 机器学习算法, 爬虫程序。
 
 # 安装python3环境, 执行项目
 git clone https://github.com/lqkweb/sqlflow.git
@@ -19,12 +19,13 @@ python manage.py
 select * from A limit 3;
 测试2:
 select * from A limit 3 as B;
-新开一个http://127.0.0.1:5000网页, 直接就可以查询数据表B了:
+新开一个 http://127.0.0.1:5000 网页, 直接就可以查询数据表B了:
 select * from B limit 2;
-as B 相当于创建了一个B临时表。
+as B 相当于创建了一个 B 临时表。
 是不是很简单。
 
 ###### 正在新增sql版机器学习算法功能, 谢谢支持。
 ###### 正在新增sql版爬虫功能, 谢谢支持。
+###### 正在新增sql版数据可视化功能, 谢谢支持。
 
 ##### 记得给个start鼓励一下！Thanks♪(･ω･)ﾉ
