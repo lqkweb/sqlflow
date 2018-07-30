@@ -12,7 +12,7 @@ git clone https://github.com/lqkweb/sqlflow.git
 
 pip install -r requirements.txt
 
-（sqlflow/sqlflow/execute/main.py 中的data.csv需要修改成你电脑中的绝对路径,数据文件在sqlflow/data/中）
+>> 注sqlflow/sqlflow/execute/main.py 中的data.csv需要修改成你电脑中的绝对路径,数据文件在sqlflow/data/中
 
 python manage.py
 
@@ -38,8 +38,8 @@ as B 相当于创建了一个 B 临时表。
 
 是不是很简单。
 
-###### * 正在新增sql版机器学习算法功能, 谢谢支持。 *
-###### * 正在新增sql版爬虫功能, 谢谢支持。 *
-###### * 正在新增sql版数据可视化功能, 谢谢支持。 *
+### * 正在新增sql版机器学习算法功能, 谢谢支持。 *
+### * 正在新增sql版爬虫功能, 谢谢支持。 *
+### * 正在新增sql版数据可视化功能, 谢谢支持。 *
 
 ##### 记得给个start鼓励一下！Thanks♪(･ω･)ﾉ
