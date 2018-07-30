@@ -20,6 +20,7 @@ reversed = (
     'AND', 'OR', 'IS', 'NOT',
     # Type
     'INT', 'CHAR', 'AS',
+    'TRAIN', 'REGISTER', 'SAVE', 'CONNECT', 'SET', 'OVERWRITE', 'JDBC',
 )
 
 tokens = reversed + (

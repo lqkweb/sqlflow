@@ -85,6 +85,14 @@ def execute_select(node, lexer, spark):
         return datat_response
 
 
+def execute_train(node, lexer, spark):
+    pass
+
+
+def execute_register(node, lexer, spark):
+    pass
+
+
 def __get_value(node, dict):
     if node.type == NodeType.relation_attr:
         return dict[str(node)]
@@ -151,3 +159,7 @@ def execute_revoke_user(node):
 def execute_main(command, lexer, spark):
     if command.type == NodeType.select:
         return execute_select(command, lexer, spark)
+    elif command.type == NodeType.train:
+        return execute_train(command, lexer, spark)
+    elif command.type == NodeType.register:
+        return execute_register(command, lexer, spark)

@@ -6,6 +6,12 @@ class NodeType:
     insert = 'INSERT'
     delete = 'DELETE'
     update = 'UPDATE'
+    train = 'TRAIN'
+    register = 'REGISTER'
+    load = 'LOAD'
+    save = 'SAVE'
+    connect = 'CONNECT'
+    set = 'SET'
     alert = 'ALERT'
     create_table = 'CREATETABLE'
     drop_table = 'DROPTABLE'
@@ -34,10 +40,27 @@ class QueryNode:
 
 
 class LoadNode:
-    def __init__(self, load_list, from_list, where_list, table_id):
-        self.type = NodeType.select
-        self.select_list = load_list
-        self.from_list = from_list
+    def __init__(self, where_list, table_id):
+        self.type = NodeType.load
+        self.where_list = where_list
+        self.table_id = table_id
+
+
+class SaveNode:
+    def __init__(self, table_id):
+        self.type = NodeType.save
+        self.table_id = table_id
+
+
+class ConnectNode:
+    def __init__(self, table_id):
+        self.type = NodeType.connect
+        self.table_id = table_id
+
+
+class SetNode:
+    def __init__(self, where_list, table_id):
+        self.type = NodeType.set
         self.where_list = where_list
         self.table_id = table_id
 
@@ -59,6 +82,20 @@ class UpdateNode:
     def __init__(self, table_name, set_list, where_list):
         self.type = NodeType.update
         self.table_name = table_name
+        self.set_list = set_list
+        self.where_list = where_list
+
+
+class TrainNode:
+    def __init__(self, set_list, where_list):
+        self.type = NodeType.train
+        self.set_list = set_list
+        self.where_list = where_list
+
+
+class RegisterNode:
+    def __init__(self, set_list, where_list):
+        self.type = NodeType.register
         self.set_list = set_list
         self.where_list = where_list
 

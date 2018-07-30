@@ -46,7 +46,13 @@ def p_dml(p):
     """ dml : query
             | insert
             | delete
-            | update """
+            | update
+            | train
+            | register
+            | load
+            | save
+            | connect
+            | set """
     p[0] = p[1]
 
 
@@ -162,6 +168,36 @@ def p_delete(p):
 def p_update(p):
     """ update : UPDATE ID SET relattr EQ relattr_or_value opwhere_clause """
     p[0] = UpdateNode(p[2], (p[4], p[6]), p[7])
+
+
+def p_train(p):
+    """ train : TRAIN non_mselect_clause opas_clause """
+    p[0] = TrainNode(p[2], p[3])
+
+
+def p_register(p):
+    """ register : REGISTER non_mselect_clause opas_clause """
+    p[0] = RegisterNode(p[2], p[3])
+
+
+def p_load(p):
+    """ load : LOAD non_mselect_clause opas_clause """
+    p[0] = LoadNode(p[2], p[3])
+
+
+def p_save(p):
+    """ save : SAVE OVERWRITE TABLE opas_clause """
+    p[0] = SaveNode(p[4])
+
+
+def p_connect(p):
+    """ connect : CONNECT JDBC opwhere_clause """
+    p[0] = ConnectNode(p[3])
+
+
+def p_set(p):
+    """ set : SET non_mselect_clause opas_clause """
+    p[0] = SetNode(p[2], p[3])
 
 
 def p_non_mattrtype_list(p):
