@@ -136,8 +136,8 @@ def p_exit(p):
 
 
 def p_query(p):
-    """ query : SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause AS ID """
-    p[0] = QueryNode(p[2], p[4], p[5], p[7])
+    """ query : SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause oplimit_clause opas_clause """
+    p[0] = QueryNode(p[2], p[4], p[5], p[6], p[7])
 
 
 def p_insert(p):
@@ -236,6 +236,20 @@ def p_opwhere_clause(p):
         p[0] = p[2]
 
 
+def p_oplimit_clause(p):
+    """ oplimit_clause : LIMIT value
+                        | nothing """
+    if len(p) == 3:
+        p[0] = p[2]
+
+
+def p_opas_clause(p):
+    """ opas_clause : AS ID
+                    | nothing """
+    if len(p) == 3:
+        p[0] = p[2]
+
+
 def p_non_mcond_list(p):
     """ non_mcond_list : non_mcond_list AND non_mcond_list
                        | non_mcond_list OR  non_mcond_list
@@ -312,9 +326,9 @@ def p_error(p):
 
 
 # Build the parser
-from lexer import lexer as lex
+from dsl.lexer import lexer as lex
 
-parser = yacc.yacc()
+parser = yacc.yacc(debug=True)
 
 if __name__ == '__main__':
     while True:

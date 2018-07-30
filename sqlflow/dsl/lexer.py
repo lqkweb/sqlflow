@@ -8,7 +8,7 @@ reversed = (
     # Main
     'CREATE', 'TABLE', 'DROP', 'SHOW', 'ALTER', 'SELECT', 'FROM', 'WHERE',
     'INSERT', 'DELETE', 'UPDATE', 'VIEW', 'USER', 'REVOKE', 'GRANT',
-    'INDEX', 'LOAD', 'SET', 'INTO', 'VALUES', 'TABLES', 'ALERT', 'ADD', "ON", "TO",
+    'INDEX', 'LOAD', 'SET', 'INTO', 'VALUES', 'TABLES', 'ALERT', 'ADD', "ON", "TO", 'LIMIT',
     'PASSWORD',
     # Modifier
     'PRIMARY', 'KEY', 'DESC', 'ASC', 'ALL',

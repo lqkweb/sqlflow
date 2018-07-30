@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Flask-SocketIO Test</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/socket.io/1.5.1/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        namespace = '/test';
+        var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+
+        socket.on('connect', function() {
+            socket.emit('connect_event', {data: 'connected!'});
+        })
+
+        socket.on('server_response', function(msg) {
+            $('#log').append('<br>' + $('<div/>').text('Received #' + ': ' + msg.data).html());
+        });
+
+        $('form#emit').submit(function(event) {
+                var da = encodeURI($('#emit_data').val());
+                console.log(da);
+                socket.emit('client_event', {data: da});
+                {#socket.emit('client_event', {data: });#}
+                return false;
+            });
+    });
+    </script>
+</head>
+<body>
+    <h2>Pysparkpro</h2>
+    <h5>Demo: SELECT * FROM user limit 3</h5>
+    <form id="emit" method="POST" action='#'>
+        <input type="text" name="emit_data" id="emit_data" placeholder="Message" style="width: 600px;height: 50px">
+        <input type="submit" value="查询">
+    </form>
+    <div id='log'></div>
+</body>
+</html>

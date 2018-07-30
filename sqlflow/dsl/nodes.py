@@ -24,12 +24,13 @@ class NodeType:
 
 
 class QueryNode:
-    def __init__(self, select_list, from_list, where_list, table_id):
+    def __init__(self, select_list, from_list, where_list, limit_num, as_table):
         self.type = NodeType.select
         self.select_list = select_list
         self.from_list = from_list
         self.where_list = where_list
-        self.table_id = table_id
+        self.limit_num = limit_num
+        self.as_table = as_table
 
 
 class LoadNode:

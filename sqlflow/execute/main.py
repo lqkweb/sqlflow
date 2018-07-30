@@ -1,8 +1,7 @@
 # coding=utf-8
 
 import time
-from nodes import NodeType
-
+from dsl.nodes import NodeType
 
 def execute_create_table(node):
     pass
@@ -70,18 +69,20 @@ def __can_use_index_joint(table_name, where_node):
 
 def execute_select(node, lexer, spark):
     data = spark.read.csv(
-        "file:///Users/leiqiankun/PycharmProjects/lqkcode/tianchi/pysparkpro/test/testflask/data/tianchi_fresh_comp_train_item.csv",
+        "file:///Users/leiqiankun/PycharmProjects/sqlflow/data/data.csv",
         header=True)
     data.createOrReplaceTempView("A")
-    if node.table_id:
-        data.createOrReplaceTempView(node.table_id)
+    if node.as_table:
+        data.createOrReplaceTempView(node.as_table)
         datatem = spark.sql(lexer.lexdata.replace(";", "").split("as")[0])
         datat_response = datatem.rdd.collect()
         print(datat_response)
+        return datat_response
     else:
         datatem = spark.sql(lexer.lexdata.replace(";", ""))
         datat_response = datatem.rdd.collect()
         print(datat_response)
+        return datat_response
 
 
 def __get_value(node, dict):
@@ -149,4 +150,4 @@ def execute_revoke_user(node):
 
 def execute_main(command, lexer, spark):
     if command.type == NodeType.select:
-        execute_select(command, lexer, spark)
+        return execute_select(command, lexer, spark)
