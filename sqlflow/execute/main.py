@@ -93,6 +93,21 @@ def execute_register(node, lexer, spark):
     pass
 
 
+def execute_load(node, lexer, spark):
+    pass
+
+
+def execute_save(node, lexer, spark):
+    pass
+
+
+def execute_connect(node, lexer, spark):
+    pass
+
+def execute_set(node, lexer, spark):
+    pass
+
+
 def __get_value(node, dict):
     if node.type == NodeType.relation_attr:
         return dict[str(node)]
@@ -163,3 +178,11 @@ def execute_main(command, lexer, spark):
         return execute_train(command, lexer, spark)
     elif command.type == NodeType.register:
         return execute_register(command, lexer, spark)
+    elif command.type == NodeType.load:
+        return execute_load(command, lexer, spark)
+    elif command.type == NodeType.save:
+        return execute_save(command, lexer, spark)
+    elif command.type == NodeType.connect:
+        return execute_connect(command, lexer, spark)
+    elif command.type == NodeType.set:
+        return execute_set(command, lexer, spark)
