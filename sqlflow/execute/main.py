@@ -3,6 +3,7 @@
 import time
 from dsl.nodes import NodeType
 
+
 def execute_create_table(node):
     pass
 
@@ -103,6 +104,7 @@ def execute_save(node, lexer, spark):
 
 def execute_connect(node, lexer, spark):
     pass
+
 
 def execute_set(node, lexer, spark):
     pass

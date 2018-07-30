@@ -29,7 +29,7 @@ def client_msg(msg):
     cur = unquote(msg["data"])
     result = parser.parse(cur, lexer=lexer)
     from execute.main import execute_main
-    datat_response =execute_main(result, lexer, spark)
+    datat_response = execute_main(result, lexer, spark)
     emit('server_response', {'data': datat_response})
 
 
