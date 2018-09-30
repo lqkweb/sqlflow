@@ -12,11 +12,11 @@ git clone https://github.com/lqkweb/sqlflow.git
 
 pip install -r requirements.txt
 
-【注sqlflow/sqlflow/execute/main.py 中的data.csv测试时需要修改成你电脑中的绝对路径,数据文件在sqlflow/data/中】
-
 python manage.py
 
 打开http://127.0.0.1:5000 就可以测试了。
+
+【注意：sqlflow/sqlflow/execute/main.py 中的data.csv测试时需要修改成你电脑中的绝对路径,数据文件在sqlflow/data/中】
 
 # 项目测试
 
