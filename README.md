@@ -12,7 +12,7 @@ git clone https://github.com/lqkweb/sqlflow.git
 
 pip install -r requirements.txt
 
->> 注sqlflow/sqlflow/execute/main.py 中的data.csv需要修改成你电脑中的绝对路径,数据文件在sqlflow/data/中
+【注sqlflow/sqlflow/execute/main.py 中的data.csv测试时需要修改成你电脑中的绝对路径,数据文件在sqlflow/data/中】
 
 python manage.py
 
