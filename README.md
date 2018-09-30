@@ -4,7 +4,7 @@
 SQLflow based on python development, support to Spark, Flink, etc as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
 
 # 项目目标
-基于python开发, 支持通过写sql的方式操作分布式集群, 运行spark, 机器学习算法, 爬虫程序。
+SQLflow 基于python开发, 支持通过写sql的方式操作分布式集群, 运行spark, 机器学习, 深度学习, 分布式爬虫, 数据可视化。
 
 # 安装python3环境, 执行项目
 
