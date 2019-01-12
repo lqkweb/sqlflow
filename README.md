@@ -1,6 +1,6 @@
 ##### 项目git：https://github.com/lqkweb/sqlflow
 
-# SQLflow (python3+)
+# SQLflow (python3)
 SQLflow based on python development, support to Spark, Flink, etc as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
 
 # 项目目标
@@ -38,7 +38,7 @@ as B 相当于创建了一个 B 临时表。
 
 一个简单的sql操作spark集群的demo,是不是很简单。
 
-### [还有更多sql版黑科技，sql版scikit-learn, sql版分布式爬虫, sql版数据可视化, sql版keras深度学习平台正在内测中！]
+### [还有更多sql版黑科技，sql版scikitlearn, sqlspider, sqlcharts, sqlkeras深度学习平台正在内测中！]
 
 ### * 正在新增sql版机器学习算法功能, 谢谢支持。 *
 ### * 正在新增sql版爬虫功能, 谢谢支持。 *
