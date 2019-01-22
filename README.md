@@ -63,6 +63,6 @@ as B 相当于创建了一个 B 临时表。
 赏给作者一杯咖啡, 提提神(To the author for a cup of coffee.)：
 <div>
 <a href="https://buglib.tech/" target="_blank">
-<img src="http://www.kszixue.com/zb_users/upload/2018/08/201808151534340304580089.png" alt="SQLflow Logo" width="500px"></img>
+<img src="http://www.kszixue.com/zb_users/upload/2018/08/201808151534340304580089.png" alt="SQLflow Logo" width="300px"></img>
 </a>
 </div>
