@@ -15,10 +15,10 @@ SQLflow based on python development, support to Spark, Flink, etc as the underly
 <img src="https://upload-images.jianshu.io/upload_images/11023671-c87720c918357b4d.png" alt="SQLflow Logo" width="500px"></img>
 </a>
 </div>
-# 项目目标
+# 目标
 SQLflow 基于python开发, 支持通过写sql的方式操作分布式集群, 运行spark, 机器学习, 深度学习, 分布式爬虫, 数据可视化。
 
-# 安装python3环境, 执行项目
+# 安装python3环境并测试
 
 git clone https://github.com/lqkweb/sqlflow.git
 
@@ -30,7 +30,7 @@ python manage.py
 
 【注意：sqlflow/sqlflow/execute/main.py 中的data.csv测试时需要修改成你电脑中的绝对路径,数据文件在sqlflow/data/中】
 
-# 项目测试
+# Demo
 
 在http://127.0.0.1:5000输入框输入:
 
