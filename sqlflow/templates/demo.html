@@ -15,7 +15,7 @@
         })
 
         socket.on('server_response', function(msg) {
-            $('#log').append('<br>' + $('<div/>').text('Received #' + ': ' + msg.data).html());
+            $('#log').append('<br>' + $('<div/>').text('查询结果为' + ': ' + msg.data).html());
         });
 
         $('form#emit').submit(function(event) {
@@ -27,14 +27,51 @@
             });
     });
     </script>
+        <style type="text/css">
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            height: 56px;
+            background-color: #101010;
+            color: #fff;
+            line-height: 56px;
+            font-size: 24px;
+        }
+
+        .main {
+            text-align: center
+        }
+
+        .h1 {
+            font-family: inherit;
+            font-weight: 500;
+            line-height: 1.1;
+            color: inherit;
+        }
+    </style>
 </head>
 <body>
-    <h2>SQLflow</h2>
+<div class="container">
+    SQLflow
+</div>
+<div class="main">
+    <h1 class="h1">SQLflow</h1>
     <h5>输入测试: SELECT * FROM A limit 3;</h5>
     <form id="emit" method="POST" action='#'>
         <input type="text" name="emit_data" id="emit_data" placeholder="Message" style="width: 600px;height: 50px">
         <input type="submit" value="查询">
     </form>
     <div id='log'></div>
+</div>
 </body>
 </html>
