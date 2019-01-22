@@ -2,7 +2,7 @@
 
 # SQLflow (python3)
 SQLflow based on python development, support to Spark, Flink, etc as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
-##### 2019-01-22 更新界面,近期规范一下代码,完善一下功能
+##### 2019-01-22 更新界面,近期会规范一下代码,写一些注释并加入读写功能
 主页：
 <div align="center">
 <a href="https://buglib.tech/" target="_blank">

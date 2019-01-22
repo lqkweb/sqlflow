@@ -5,7 +5,6 @@ from urllib.parse import unquote
 from dsl.lexer import lexer
 from dsl.parser import parser
 from session.abstract_class import PysparkPro
-from flask_bootstrap import Bootstrap
 from execute.main import execute_main
 
 app = Flask(__name__)
