@@ -1,6 +1,6 @@
 ##### 项目git：https://github.com/lqkweb/sqlflow
 
-# SQLflow (python3)
+# SQLflow (python3.5)
 SQLflow based on python development, support to Spark, Flink, etc as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
 ##### 2019-01-22 更新界面,近期会规范一下代码,写一些注释并加入读写功能
 主页：
@@ -18,7 +18,7 @@ SQLflow based on python development, support to Spark, Flink, etc as the underly
 # 目标
 SQLflow 基于python开发, 支持通过写sql的方式操作分布式集群, 运行spark, 机器学习, 深度学习, 分布式爬虫, 数据可视化。
 
-# 安装python3环境并测试
+# 安装python3.5环境并测试
 
 git clone https://github.com/lqkweb/sqlflow.git
 
