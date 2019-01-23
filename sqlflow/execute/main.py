@@ -1,8 +1,10 @@
 # coding=utf-8
 
 import time
+import os
 from dsl.nodes import NodeType
 
+datadir = os.path.abspath(os.path.join(os.getcwd(), "..")) + "/data/"
 
 def execute_create_table(node):
     pass
@@ -69,9 +71,7 @@ def __can_use_index_joint(table_name, where_node):
 
 
 def execute_select(node, lexer, spark):
-    data = spark.read.csv(
-        "file:///Users/leiqiankun/PycharmProjects/sqlflow/data/data.csv",
-        header=True)
+    data = spark.read.csv("file://"+ datadir + "data.csv", header=True)
     data.createOrReplaceTempView("A")
     if node.as_table:
         data.createOrReplaceTempView(node.as_table)
@@ -188,3 +188,6 @@ def execute_main(command, lexer, spark):
         return execute_connect(command, lexer, spark)
     elif command.type == NodeType.set:
         return execute_set(command, lexer, spark)
+
+if __name__ == '__main__':
+    print(os.path.abspath(os.path.join(os.getcwd(), "../..")))
