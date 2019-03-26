@@ -28,14 +28,14 @@ git clone https://github.com/lqkweb/sqlflow.git
 
 pip install -r requirements.txt
 
-配置SPARK_HOME路径
+
 os.environ['SPARK_HOME'] = '/Users/leiqiankun/spark-2.4.0'
 
 python manage.py
 
 打开http://127.0.0.1:5000 就可以测试了。
 
-【注意：sqlflow/sqlflow/execute/main.py 中的data.csv测试时需要将数据放到sqlflow/data目录中】
+【注意：1、下载apache spark文件配置manage.py中的SPARK_HOME路径。2、data.csv是放到sqlflow/data目录中】
 
 # Demo
 
