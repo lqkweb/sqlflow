@@ -8,7 +8,9 @@ from execute.main import execute_main
 import os
 
 app = Flask(__name__)
-spark = PysparkPro().pysparkpro
+os.environ['SPARK_HOME'] = '/Users/leiqiankun/spark-2.4.0'
+
+spark = PysparkPro().sc
 datadir = os.path.abspath(os.path.join(os.getcwd(), "..")) + "/data/"
 
 

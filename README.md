@@ -1,9 +1,11 @@
 #### 项目git：https://github.com/lqkweb/sqlflow
+#### Blog：http://www.leiqiankun.com
+
 开发交流QQ群: 941879291
 
 # SQLflow (python3.5)
-SQLflow based on python development, support to Spark, Flink, etc as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
-##### 2019-01-22 更新界面,近期会规范一下代码,写一些注释并加入读写功能
+SQLflow based on python development, support to Spark, as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
+##### 2019-03-26 更新后台路由,前端抽取base模板并更新使用ajax方式执行sql语句
 主页：
 <div align="center">
 <a href="https://buglib.tech/" target="_blank">
@@ -20,17 +22,20 @@ SQLflow based on python development, support to Spark, Flink, etc as the underly
 # 目标
 SQLflow 基于python开发, 支持通过写sql的方式操作分布式集群, 运行spark, 机器学习, 深度学习, 分布式爬虫, 数据可视化。
 
-# 安装python3.5环境并测试
+# 安装python3.6环境并测试
 
 git clone https://github.com/lqkweb/sqlflow.git
 
 pip install -r requirements.txt
 
+配置SPARK_HOME路径
+os.environ['SPARK_HOME'] = '/Users/leiqiankun/spark-2.4.0'
+
 python manage.py
 
 打开http://127.0.0.1:5000 就可以测试了。
 
-【注意：sqlflow/sqlflow/execute/main.py 中的data.csv测试时需要修改成你电脑中的绝对路径,数据文件在sqlflow/data/中】
+【注意：sqlflow/sqlflow/execute/main.py 中的data.csv测试时需要将数据放到sqlflow/data目录中】
 
 # Demo
 

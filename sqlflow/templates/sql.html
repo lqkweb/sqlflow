@@ -21,11 +21,12 @@
 {% endblock %}
 {% block content %}
     <div class="container">
-        SQLflow
+        <a href="{{ url_for('index') }}">SQLflow</a>
     </div>
     <div class="main">
         <h1 class="h1">SQLflow</h1>
         <h5>输入测试: SELECT * FROM A limit 3;</h5>
+        <h6>【注】第一次执行sql时会比较慢,需要大约5秒,因为需要启动pyspark</h6>
         <input type="text" name="emit_data" id="emit_data" placeholder="Message" style="width: 600px;height: 50px">
         <input type="submit" value="查询" id="submit">
         <div id='data'></div>
