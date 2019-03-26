@@ -1,41 +1,61 @@
 # coding:utf-8
-from flask import Flask, render_template, session, request
-from flask_socketio import SocketIO, emit
+from flask import Flask, render_template, request, jsonify
 from urllib.parse import unquote
 from dsl.lexer import lexer
 from dsl.parser import parser
-from session.abstract_class import PysparkPro
+from session.baseclass import PysparkPro
 from execute.main import execute_main
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
-app.config['JSON_AS_ASCII'] = False
-socketio = SocketIO(app)
 spark = PysparkPro().pysparkpro
+datadir = os.path.abspath(os.path.join(os.getcwd(), "..")) + "/data/"
 
 
 @app.route('/')
 def index():
+    '''
+    :return:
+    '''
     return render_template('index.html')
 
 
-@app.route('/demo')
-def demo():
-    return render_template('demo.html')
+@app.route('/sql')
+def sql():
+    '''
+    运行单条sql
+    :return:
+    '''
+    return render_template('sql.html')
 
 
-@socketio.on('client_event', namespace='/test')
-def client_msg(msg):
-    cur = unquote(msg["data"])
+@app.route('/script')
+def script():
+    '''
+    运行脚本
+    :return:
+    '''
+    return render_template('script.html')
+
+
+@app.route('/udf')
+def udf():
+    '''
+    注册udf函数
+    :return:
+    '''
+    return render_template('udf.html')
+
+
+@app.route('/run', methods=["POST", "GET"])
+def run():
+    msg = request.args.get("data", "")
+    cur = unquote(msg)
     result = parser.parse(cur, lexer=lexer)
-    datat_response = execute_main(result, lexer, spark)
-    emit('server_response', {'data': datat_response})
-
-
-@socketio.on('connect_event')
-def connected_msg(msg):
-    emit('server_response', {'data': msg['data']})
+    data = execute_main(result, lexer, spark, datadir)
+    print(data)
+    return jsonify(data)
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='127.0.0.1')
+    app.run(port=5002)

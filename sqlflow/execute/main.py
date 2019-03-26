@@ -1,10 +1,7 @@
 # coding=utf-8
-
 import time
-import os
 from dsl.nodes import NodeType
 
-datadir = os.path.abspath(os.path.join(os.getcwd(), "..")) + "/data/"
 
 def execute_create_table(node):
     pass
@@ -70,19 +67,17 @@ def __can_use_index_joint(table_name, where_node):
     pass
 
 
-def execute_select(node, lexer, spark):
-    data = spark.read.csv("file://"+ datadir + "data.csv", header=True)
+def execute_select(node, lexer, spark, datadir):
+    data = spark.read.csv("file://" + datadir + "data.csv", header=True)
     data.createOrReplaceTempView("A")
     if node.as_table:
         data.createOrReplaceTempView(node.as_table)
         datatem = spark.sql(lexer.lexdata.replace(";", "").split("as")[0])
-        datat_response = datatem.rdd.collect()
-        print(datat_response)
+        datat_response = datatem.toJSON().collect()
         return datat_response
     else:
         datatem = spark.sql(lexer.lexdata.replace(";", ""))
-        datat_response = datatem.rdd.collect()
-        print(datat_response)
+        datat_response = datatem.toJSON().collect()
         return datat_response
 
 
@@ -173,9 +168,9 @@ def execute_revoke_user(node):
     pass
 
 
-def execute_main(command, lexer, spark):
+def execute_main(command, lexer, spark, datadir):
     if command.type == NodeType.select:
-        return execute_select(command, lexer, spark)
+        return execute_select(command, lexer, spark, datadir)
     elif command.type == NodeType.train:
         return execute_train(command, lexer, spark)
     elif command.type == NodeType.register:
@@ -189,5 +184,6 @@ def execute_main(command, lexer, spark):
     elif command.type == NodeType.set:
         return execute_set(command, lexer, spark)
 
+
 if __name__ == '__main__':
-    print(os.path.abspath(os.path.join(os.getcwd(), "../..")))
+    pass

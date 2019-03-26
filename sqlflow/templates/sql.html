@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block script %}
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#submit").click(function () {
+                var searchText = $("#emit_data").val();
+                $.ajax({
+                    url: '/run?' + "data=" + searchText,
+                    dataType: "json",
+                    type: 'get',
+                    async: true,
+                    cache: false,
+                    success: function (data) {
+                        $('#data').append(data)
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        SQLflow
+    </div>
+    <div class="main">
+        <h1 class="h1">SQLflow</h1>
+        <h5>输入测试: SELECT * FROM A limit 3;</h5>
+        <input type="text" name="emit_data" id="emit_data" placeholder="Message" style="width: 600px;height: 50px">
+        <input type="submit" value="查询" id="submit">
+        <div id='data'></div>
+    </div>
+{% endblock %}

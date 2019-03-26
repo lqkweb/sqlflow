@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession, HiveContext
 from pyspark import SparkContext,SparkConf
+import os
 
 
 class PysparkPro():
@@ -12,6 +13,7 @@ class PysparkPro():
     #     self.pysparkpro = HiveContext(sparkContext=sc)
 
     def __init__(self):
+        os.environ['SPARK_HOME'] = '/Users/leiqiankun/spark-2.4.0'
         super(PysparkPro, self).__init__()
         self.pysparkpro = SparkSession \
             .builder \
