@@ -28,9 +28,6 @@ git clone https://github.com/lqkweb/sqlflow.git
 
 pip install -r requirements.txt
 
-
-os.environ['SPARK_HOME'] = '/Users/leiqiankun/spark-2.4.0'
-
 python manage.py
 
 打开http://127.0.0.1:5000 就可以测试了。
