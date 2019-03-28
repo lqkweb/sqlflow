@@ -4,7 +4,7 @@
 
 开发交流QQ群: 941879291
 
-# SQLflow (python3.5)
+# SQLflow (python3.6)
 SQLflow based on python development, support to Spark, as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
 ##### 2019-03-26 更新后台路由,前端抽取base模板并更新使用ajax方式执行sql语句
 主页：
@@ -49,11 +49,13 @@ select * from A limit 3;
 
 select * from A limit 3 as B;
 
-打开单sql执行页面：http://127.0.0.1:5000/sql, 直接就可以查询数据表A或者数据表B了:
+打开单sql执行页面：http://127.0.0.1:5000/sql, 直接就可以用spark sql语法操作数据表A和数据表B了:
 
-select * from A limit 2;
+desc A
 
-select * from B limit 2;
+select * from A limit 2
+
+select * from B limit 2
 
 as B 相当于创建了一个 B 临时表。
 
