@@ -16,7 +16,7 @@ SQLflow based on python development, support to Spark, as the underlying distrib
 结果页：
 <div align="center">
 <a href="https://buglib.tech/" target="_blank">
-<img src="https://upload-images.jianshu.io/upload_images/11023671-c87720c918357b4d.png" alt="SQLflow Logo" width="500px"></img>
+<img src="https://upload-images.jianshu.io/upload_images/11023671-b4d8905fda2ebe67.png" alt="SQLflow Logo" width="500px"></img>
 </a>
 </div>
 
