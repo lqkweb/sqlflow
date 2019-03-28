@@ -51,17 +51,33 @@ def udf():
     return render_template('udf.html')
 
 
-@app.route('/run', methods=["POST", "GET"])
-def run():
-    msg = request.args.get("data", "")
-    if msg:
-        cur = unquote(msg)
+@app.route('/runsql', methods=["POST", "GET"])
+def runsql():
+    sql = request.args.get("data", "")
+    if sql:
+        try:
+            datatem = spark.sql(sql.replace(";", ""))
+            data = datatem.toJSON().collect()
+        except Exception as e:
+            print(str(e))
+            x = jsonify(list(str({"data": str(e)})))
+            return x
+        return jsonify(list(str({"data": data})))
+    else:
+        return jsonify(list(str({"data": "Invalid Input"})))
+
+
+@app.route('/runscript', methods=["POST", "GET"])
+def runscript():
+    script = request.args.get("data", "")
+    if script:
+        cur = unquote(script)
         result = parser.parse(cur, lexer=lexer)
         data = execute_main(result, lexer, spark, datadir)
         print(data)
         return jsonify(data)
     else:
-        return "Invalid Input"
+        return jsonify(list(str({"data": "Invalid Input"})))
 
 
 if __name__ == '__main__':

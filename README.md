@@ -31,23 +31,27 @@ pip install -r requirements.txt
 
 python manage.py
 
-打开http://127.0.0.1:5000 就可以测试了。
+主页：http://127.0.0.1:5000
+脚本页面：http://127.0.0.1:5000/script
+单sql页面：http://127.0.0.1:5000/sql 
 
 【注意：1、下载apache spark文件配置manage.py中的SPARK_HOME路径。2、data.csv是放到sqlflow/data目录中】
 
 # Demo
 
-在http://127.0.0.1:5000输入框输入:
+在脚本执行页面：http://127.0.0.1:5000/script  输入 select * from A limit 3; 或者 select * from A limit 3 as B; 生成临时表A或者B
 
-测试1:
+生成临时表A数据:
 
 select * from A limit 3;
 
-测试2:
+生成临时表B数据:
 
 select * from A limit 3 as B;
 
-新开一个 http://127.0.0.1:5000 网页, 直接就可以查询数据表B了:
+打开单sql执行页面：http://127.0.0.1:5000/sql, 直接就可以查询数据表A或者数据表B了:
+
+select * from A limit 2;
 
 select * from B limit 2;
 

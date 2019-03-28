@@ -16,8 +16,8 @@
     </div>
     <div class="main">
         <h1 class="h1">SQLflow</h1>
-        <h5>去执行一下<a href="{{ url_for('script') }}">script</a>页面生成临时表A, 然后在此页面<a href="{{ url_for('sql') }}">sql</a>查询: select * from A</h5>
-        <h6>【注】Table or view not found: 去执行一下<a href="{{ url_for('script') }}">script</a>页面生成临时表A</h6>
+        <h5>输入测试: select * from A limit 3;</h5>
+        <h6>【注】第一次执行sql时会比较慢,需要大约5秒,因为需要启动pyspark</h6>
     </div>
     <textarea id="flask-codemirror-source_code" name="source_code" style="text-align: left;"></textarea>
     <div class="main">
@@ -38,7 +38,7 @@
             $("#submit").click(function () {
                 var searchText = editor_for_source_code.getValue();
                 $.ajax({
-                    url: '/runsql?' + "data=" + searchText,
+                    url: '/runscript?' + "data=" + searchText,
                     dataType: "json",
                     type: 'get',
                     async: true,
