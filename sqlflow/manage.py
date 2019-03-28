@@ -8,6 +8,8 @@ from execute.main import execute_main
 import os
 
 app = Flask(__name__)
+app.secret_key = 'secret_key'
+# 下载apache spark, 指定解压目录，下载地址：http://spark.apache.org/downloads.html
 os.environ['SPARK_HOME'] = '/Users/leiqiankun/spark-2.4.0'
 
 spark = PysparkPro().sc
@@ -52,12 +54,15 @@ def udf():
 @app.route('/run', methods=["POST", "GET"])
 def run():
     msg = request.args.get("data", "")
-    cur = unquote(msg)
-    result = parser.parse(cur, lexer=lexer)
-    data = execute_main(result, lexer, spark, datadir)
-    print(data)
-    return jsonify(data)
+    if msg:
+        cur = unquote(msg)
+        result = parser.parse(cur, lexer=lexer)
+        data = execute_main(result, lexer, spark, datadir)
+        print(data)
+        return jsonify(data)
+    else:
+        return "Invalid Input"
 
 
 if __name__ == '__main__':
-    app.run(port=5002)
+    app.run()

@@ -4,6 +4,8 @@ body {
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;
+    margin:0px;
+    padding:0px;
 }
 
 .container {
@@ -19,7 +21,16 @@ body {
 }
 
 .main {
-    text-align: center
+    width:600px;
+    text-align: center;
+    margin: 5px auto;
+}
+
+.CodeMirror{
+    margin: 0 auto;
+    font-family: monospace;
+    height: 100px;
+    width: 600px;
 }
 
 .h1 {

@@ -1,10 +1,41 @@
 {% extends 'base.html' %}
-{% block script %}
+{% block head %}
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.11.0/codemirror.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.11.0/codemirror.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.11.0/mode/sql/sql.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.11.0/theme/abcdef.css">
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/style.css') }}">
+    {% endblock %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+        SQLflow
+    </div>
+    <div class="main">
+        <h1 class="h1">SQLflow</h1>
+        <h5>输入测试: select * from A limit 3;</h5>
+        <h6>【注】第一次执行sql时会比较慢,需要大约5秒,因为需要启动pyspark</h6>
+    </div>
+    <textarea id="flask-codemirror-source_code" name="source_code" style="text-align: left;"></textarea>
+    <div class="main">
+        <input type="submit" value="执行" id="submit"
+               style="width: 60px;height:36px;background: #0093fe;color: #fff;font-size: 0.9em;border: none;outline: 0;border-radius: 4px;">
+        <div id='data'></div>
+    </div>
+    <script>
+        var editor_for_source_code = CodeMirror.fromTextArea(
+            document.getElementById('flask-codemirror-source_code'),
+            {
+                "lineNumbers": "true",
+                "mode": "sql",
+                "theme": "abcdef"
+            }
+        );
         $(function () {
             $("#submit").click(function () {
-                var searchText = $("#emit_data").val();
+                var searchText = editor_for_source_code.getValue();
                 $.ajax({
                     url: '/run?' + "data=" + searchText,
                     dataType: "json",
@@ -16,19 +47,6 @@
                     }
                 })
             })
-        })
+        });
     </script>
-{% endblock %}
-{% block content %}
-    <div class="container">
-        <a href="{{ url_for('index') }}">SQLflow</a>
-    </div>
-    <div class="main">
-        <h1 class="h1">SQLflow</h1>
-        <h5>输入测试: SELECT * FROM A limit 3;</h5>
-        <h6>【注】第一次执行sql时会比较慢,需要大约5秒,因为需要启动pyspark</h6>
-        <input type="text" name="emit_data" id="emit_data" placeholder="Message" style="width: 600px;height: 50px">
-        <input type="submit" value="查询" id="submit">
-        <div id='data'></div>
-    </div>
 {% endblock %}
