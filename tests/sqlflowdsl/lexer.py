@@ -4,40 +4,23 @@ import ply.lex as lex
 
 # List of token names.
 reversed = (
-    # Main
-    'CREATE', 'TABLE', 'DROP', 'SHOW', 'ALTER', 'SELECT', 'FROM', 'WHERE',
-    'INSERT', 'DELETE', 'UPDATE', 'VIEW', 'USER', 'REVOKE', 'GRANT',
-    'INDEX', 'LOAD', 'SET', 'INTO', 'VALUES', 'TABLES', 'ALERT', 'ADD', "ON", "TO", 'LIMIT',
-    'PASSWORD',
-    # Modifier
-    'PRIMARY', 'KEY', 'DESC', 'ASC', 'ALL',
-    # Const Value
-    'NULL',
-    # Command
-    'HELP', 'PRINT', 'EXIT', 'SPARKSQL',
-    # Operator
-    'AND', 'OR', 'IS', 'NOT',
-    # Type
-    'INT', 'CHAR', 'AS',
-    'TRAIN', 'REGISTER', 'SAVE', 'CONNECT', 'SET', 'OVERWRITE', 'JDBC',
+    # 基本操作
+    'LOAD', 'SAVE', 'TRAIN', 'RUN', 'OVERWRITE', 'CONNECT', 'SET',
+    # 数据源
+    'PARQUET', 'CSV', 'JSON', 'MLSQL',
+    # sklearn算法
+    'SKLEARN', 'KNN', 'LR',
+    # pandas and numpy
+    'PD', 'NP',
 )
 
 tokens = reversed + (
     # Symbol
     'ID', 'NUMBER', 'STRING',
-    # Operator
-    'EQ', 'LT', 'LE', 'GT', 'GE', 'NE',
 )
 
 # Regular expression rules for simple tokens
-t_EQ = r'='
-t_GT = r'>'
-t_GE = r'>='
-t_LT = r'<'
-t_LE = r'<='
-t_NE = r'!='
-
-literals = ['(', ')', ',', ';', '.', '+', '-', '*', '/']
+literals = ['(', ')', ',', ';', '.']
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
@@ -54,7 +37,7 @@ def t_ID(t):
 
 def t_NUMBER(t):
     r'\d+'
-    t.value = int(t.value)
+    t.value = float(t.value)
     return t
 
 
@@ -74,7 +57,7 @@ def t_error(t):
     print("LexError [%s, %s]: Illegal character '%s'." % (t.lexer.lineno, t.lexer.lexpos, t.value[0]))
 
 
-lexer = lex.lex()
+lexer = lex.lex(debug=1)
 
 if __name__ == '__main__':
     data = input('Lexer > ')

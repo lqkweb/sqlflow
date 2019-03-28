@@ -5,6 +5,7 @@
 {% block content %}
     <div class="container">
         SQLflow
+        <a href="/">Home</a>&nbsp; | &nbsp;<a href="{{ url_for('sql') }}">sql</a>&nbsp; | &nbsp;<a href="{{ url_for('script') }}">script</a>
     </div>
 
     <div class="main">
@@ -13,6 +14,7 @@
             engine,
             <br/>through a set of unified configuration file to complete the batch, flow calculation, the Rest service
             development.</p>
-        <a href="/sql" style="font-size: 24px">点此>>到demo页面输入 select * from A limit 3; 看看有什么效果</a>
+        <h5><a href="/script" style="font-size: 24px">点此>></a>到script页面输入 select * from A limit 3;</h5>
+        <h5>然后到<a href="{{ url_for('sql') }}">sql</a>页面输入 spark sql语法操作表A</h5>
     </div>
 {% endblock %}

@@ -1,8 +1,8 @@
 # coding=utf-8
 
 import ply.yacc as yacc
-from dsl.nodes import *
-from dsl import lexer
+from nodes import *
+import lexer
 
 # Get the token map.
 tokens = lexer.tokens
@@ -18,6 +18,7 @@ def p_start(p):
     """ start : command
               | command ';' """
     p[0] = p[1]
+
 
 def p_command(p):
     """ command : ddl
@@ -361,7 +362,6 @@ def p_error(p):
 
 # Build the parser
 from dsl.lexer import lexer as lex
-
 parser = yacc.yacc(debug=True)
 
 if __name__ == '__main__':
@@ -373,5 +373,6 @@ if __name__ == '__main__':
         if not s: continue
         try:
             result = parser.parse(s, lexer=lex)
+            print(result)
         except Exception as e:
             print(e)
