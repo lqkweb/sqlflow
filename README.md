@@ -23,7 +23,9 @@ SQLflow based on python development, support to Spark, as the underlying distrib
 # 目标
 SQLflow 基于python开发, 支持通过写sql的方式操作分布式集群, 运行spark, 机器学习, 深度学习, 分布式爬虫, 数据可视化。
 
-# 安装python3.6环境并测试
+# Build
+
+python3.6
 
 git clone https://github.com/lqkweb/sqlflow.git
 
@@ -37,7 +39,7 @@ python manage.py
 
 【注意：1、下载apache spark文件配置manage.py中的SPARK_HOME路径。2、data.csv是放到sqlflow/data目录中】
 
-# Demo
+# Usage [sparksql doc:https://spark.apache.org/docs/latest/api/sql/index.html]
 
 在脚本执行页面：http://127.0.0.1:5000/script  输入 select * from A limit 3; 或者 select * from A limit 3 as B; 生成临时表A或者B
 
@@ -70,3 +72,6 @@ as B 相当于创建了一个 B 临时表。
 
 
 # 记得给个star鼓励一下！Thanks♪(･ω･)ﾉ
+
+----------
+[![HitCount](http://hits.dwyl.io/lqkweb/sqlflow.svg)](http://hits.dwyl.io/lqkweb/sqlflow)

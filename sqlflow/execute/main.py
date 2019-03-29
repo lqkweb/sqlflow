@@ -71,8 +71,8 @@ def execute_select(node, lexer, spark, datadir):
     data = spark.read.csv("file://" + datadir + "data.csv", header=True)
     data.createOrReplaceTempView("A")
     if node.as_table:
-        data.createOrReplaceTempView(node.as_table)
         datatem = spark.sql(lexer.lexdata.replace(";", "").split("as")[0])
+        datatem.createOrReplaceTempView(node.as_table)
         datat_response = datatem.toJSON().collect()
         return datat_response
     else:
