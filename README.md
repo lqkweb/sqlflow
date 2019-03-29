@@ -39,7 +39,7 @@ python manage.py
 
 【注意：1、下载apache spark文件配置manage.py中的SPARK_HOME路径。2、data.csv是放到sqlflow/data目录中】
 
-# Usage
+# Usage [sparksql doc:https://spark.apache.org/docs/latest/api/sql/index.html]
 
 在脚本执行页面：http://127.0.0.1:5000/script  输入 select * from A limit 3; 或者 select * from A limit 3 as B; 生成临时表A或者B
 
