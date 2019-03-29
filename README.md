@@ -39,7 +39,7 @@ python manage.py
 
 【注意：1、下载apache spark文件配置manage.py中的SPARK_HOME路径。2、data.csv是放到sqlflow/data目录中】
 
-# Usage [sparksql doc:https://spark.apache.org/docs/latest/api/sql/index.html]
+# Usage 
 
 在脚本执行页面：http://127.0.0.1:5000/script  输入 select * from A limit 3; 或者 select * from A limit 3 as B; 生成临时表A或者B
 
@@ -62,6 +62,8 @@ select * from B limit 2
 as B 相当于创建了一个 B 临时表。
 
 一个简单的sql操作spark集群的demo,是不是很简单。
+
+[附sparksql doc:https://spark.apache.org/docs/latest/api/sql/index.html]
 
 ### [还有更多sql版黑科技，sql版scikitlearn, sqlspider, sqlcharts, sqlkeras深度学习平台正在内测中！]
 
