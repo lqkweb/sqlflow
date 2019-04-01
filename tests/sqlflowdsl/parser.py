@@ -10,7 +10,8 @@ tokens = lexer.tokens
 precedence = (
     ('left', 'OR'),
     ('left', 'AND'),
-    ('nonassoc', 'LE', 'LE', 'GE', 'GT', 'EQ', 'NE'),  # Nonassociative operators
+    ('nonassoc', 'LE', 'LE', 'GE', 'GT', 'EQ', 'NE'),
+    # Nonassociative operators
 )
 
 
@@ -362,6 +363,7 @@ def p_error(p):
 
 # Build the parser
 from dsl.lexer import lexer as lex
+
 parser = yacc.yacc(debug=True)
 
 if __name__ == '__main__':
