@@ -65,7 +65,8 @@ as B 相当于创建了一个 B 临时表。
 
 [附sparksql doc:https://spark.apache.org/docs/latest/api/sql/index.html](https://spark.apache.org/docs/latest/api/sql/index.html)
 
-### [还有更多sql版黑科技，sql版scikitlearn, sqlspider, sqlcharts, sqlkeras深度学习平台正在内测中！]
+
+### 还有更多sql版黑科技，sql版scikitlearn, sqlspider, sqlcharts, sqlkeras深度学习平台正在内测中！
 
 ### * 正在新增sql版机器学习算法功能, 谢谢支持。 *
 ### * 正在新增sql版爬虫功能, 谢谢支持。 *
