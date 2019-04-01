@@ -73,7 +73,7 @@ def t_newline(t):
 # Error handling rule
 def t_error(t):
     print("LexError [%s, %s]: Illegal character '%s'." % (
-    t.lexer.lineno, t.lexer.lexpos, t.value[0]))
+        t.lexer.lineno, t.lexer.lexpos, t.value[0]))
 
 
 lexer = lex.lex()

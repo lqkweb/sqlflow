@@ -206,7 +206,8 @@ class Cond:
         self.right = right
 
     def __str__(self):
-        return '(' + str(self.left) + ', ' + str(self.right) + ', ' + self.op + ')'
+        return '(' + str(self.left) + ', ' + str(
+            self.right) + ', ' + self.op + ')'
 
 
 class AttrType:
