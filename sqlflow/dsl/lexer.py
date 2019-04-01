@@ -7,7 +7,8 @@ reversed = (
     # Main
     'CREATE', 'TABLE', 'DROP', 'SHOW', 'ALTER', 'SELECT', 'FROM', 'WHERE',
     'INSERT', 'DELETE', 'UPDATE', 'VIEW', 'USER', 'REVOKE', 'GRANT',
-    'INDEX', 'LOAD', 'SET', 'INTO', 'VALUES', 'TABLES', 'ALERT', 'ADD', "ON", "TO", 'LIMIT',
+    'INDEX', 'LOAD', 'SET', 'INTO', 'VALUES', 'TABLES', 'ALERT', 'ADD', "ON",
+    "TO", 'LIMIT',
     'PASSWORD',
     # Modifier
     'PRIMARY', 'KEY', 'DESC', 'ASC', 'ALL',
@@ -71,7 +72,8 @@ def t_newline(t):
 
 # Error handling rule
 def t_error(t):
-    print("LexError [%s, %s]: Illegal character '%s'." % (t.lexer.lineno, t.lexer.lexpos, t.value[0]))
+    print("LexError [%s, %s]: Illegal character '%s'." % (
+    t.lexer.lineno, t.lexer.lexpos, t.value[0]))
 
 
 lexer = lex.lex()
