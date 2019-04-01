@@ -39,6 +39,7 @@ class QueryNode:
         self.limit_num = limit_num
         self.as_table = as_table
 
+
 class SPARKSQLNode:
     def __init__(self, select_list):
         self.type = NodeType.select
@@ -69,6 +70,7 @@ class SetNode:
         self.type = NodeType.set
         self.where_list = where_list
         self.table_id = table_id
+
 
 class InsertNode:
     def __init__(self, table_name, value_list):
@@ -211,11 +213,12 @@ class Cond:
         self.right = right
 
     def __str__(self):
-        return '(' + str(self.left) + ', ' + str(self.right) + ', ' + self.op + ')'
+        return '(' + str(self.left) + ', ' + str(
+            self.right) + ', ' + self.op + ')'
 
 
 class AttrType:
-    def __init__(self, attr_name, attr_type, type_len = 1):
+    def __init__(self, attr_name, attr_type, type_len=1):
         self.type = NodeType.attr_type
         self.attr_type = attr_type
         self.type_len = type_len

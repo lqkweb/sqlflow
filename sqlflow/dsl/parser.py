@@ -10,7 +10,8 @@ tokens = lexer.tokens
 precedence = (
     ('left', 'OR'),
     ('left', 'AND'),
-    ('nonassoc', 'LE', 'LE', 'GE', 'GT', 'EQ', 'NE'),  # Nonassociative operators
+    ('nonassoc', 'LE', 'LE', 'GE', 'GT', 'EQ', 'NE'),
+    # Nonassociative operators
 )
 
 
@@ -18,6 +19,7 @@ def p_start(p):
     """ start : command
               | command ';' """
     p[0] = p[1]
+
 
 def p_command(p):
     """ command : ddl
