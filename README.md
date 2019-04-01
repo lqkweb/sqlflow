@@ -63,7 +63,7 @@ as B 相当于创建了一个 B 临时表。
 
 一个简单的sql操作spark集群的demo,是不是很简单。
 
-[附sparksql doc:https://spark.apache.org/docs/latest/api/sql/index.html]
+[附sparksql doc:https://spark.apache.org/docs/latest/api/sql/index.html](https://spark.apache.org/docs/latest/api/sql/index.html)
 
 ### [还有更多sql版黑科技，sql版scikitlearn, sqlspider, sqlcharts, sqlkeras深度学习平台正在内测中！]
 
