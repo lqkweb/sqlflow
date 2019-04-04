@@ -6,6 +6,9 @@
 
 
 # SQLflow (python3.6)
+
+[![image](https://camo.githubusercontent.com/6ff64ec221e68a362bab8af56f39c1ab2cd46ce1/68747470733a2f2f696d672e736869656c64732e696f2f707970692f6c2f72657175657374732e737667)](https://github.com/kennethreitz/requests/blob/master/LICENSE)
+
 SQLflow based on python development, support to Spark, as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
 ##### 2019-03-26 更新后台路由,前端抽取base模板并更新使用ajax方式执行sql语句
 主页：
