@@ -1,8 +1,9 @@
-#### 项目git：https://github.com/lqkweb/sqlflow
 #### Blog：http://www.leiqiankun.com
 #### 简书博客: https://www.jianshu.com/u/3fe4aab60ac4
+#### 老司机网盘搜：http://www.81ad.cn
 
 开发交流QQ群: 941879291
+
 
 # SQLflow (python3.6)
 SQLflow based on python development, support to Spark, as the underlying distributed computing engine, through a set of unified configuration file to complete the batch, flow calculation, the Rest service development.
