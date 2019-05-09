@@ -25,8 +25,8 @@ SQLflow based on python development, support to Spark, as the underlying distrib
 </a>
 </div>
 
-# 目标
-SQLflow 基于python开发, 支持通过写sql的方式操作分布式集群, 运行spark, 机器学习, 深度学习, 分布式爬虫, 数据可视化。
+# SQLflow
+SQLflow 基于python开发, 支持通过写sql的方式操作分布式集群, 数据处理, 机器学习、深度学习模型训练, 模型部署, 分布式爬虫, 数据可视化等。
 
 # Build
 
