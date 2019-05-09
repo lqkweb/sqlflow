@@ -49,26 +49,31 @@ python manage.py
 在脚本执行页面：http://127.0.0.1:5000/script  输入 select * from A limit 3; 或者 select * from A limit 3 as B; 生成临时表A或者B
 
 生成临时表A数据:
-
+```
 select * from A limit 3;
+```
 
 生成临时表B数据:
-
+```
 select * from A limit 3 as B;
 
-打开单sql执行页面：http://127.0.0.1:5000/sql, 直接就可以用spark sql语法操作数据表A和数据表B了:
+```
 
+
+打开单sql执行页面：http://127.0.0.1:5000/sql, 直接就可以用spark sql任意语法操作数据表A和数据表B了:
+```
 desc A
-
 select * from A limit 2
-
 select * from B limit 2
 
-as B 相当于创建了一个 B 临时表。
+```
 
-一个简单的sql操作spark集群的demo,是不是很简单。
 
-[附sparksql doc:https://spark.apache.org/docs/latest/api/sql/index.html](https://spark.apache.org/docs/latest/api/sql/index.html)
+[注] "as B" 相当于创建了一个 B 临时表。
+
+一个简单的sql操作spark集群的Demo,是不是很简单。
+
+[附] sparksql doc: https://spark.apache.org/docs/latest/api/sql/index.html(https://spark.apache.org/docs/latest/api/sql/index.html)
 
 
 ### 还有更多sql版黑科技，sql版scikitlearn, sqlspider, sqlcharts, sqlkeras深度学习平台正在内测中！
