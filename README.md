@@ -56,7 +56,6 @@ select * from A limit 3;
 生成临时表B数据:
 ```
 select * from A limit 3 as B;
-
 ```
 
 
@@ -65,9 +64,7 @@ select * from A limit 3 as B;
 desc A
 select * from A limit 2
 select * from B limit 2
-
 ```
-
 
 [注] "as B" 相当于创建了一个 B 临时表。
 
