@@ -70,7 +70,7 @@ select * from B limit 2
 
 一个简单的sql操作spark集群的Demo,是不是很简单。
 
-[附] sparksql doc: https://spark.apache.org/docs/latest/api/sql/index.html(https://spark.apache.org/docs/latest/api/sql/index.html)
+[附] sparksql doc: https://spark.apache.org/docs/latest/api/sql/index.html
 
 
 ### 还有更多sql版黑科技，sql版scikitlearn, sqlspider, sqlcharts, sqlkeras深度学习平台正在内测中！
