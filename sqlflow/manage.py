@@ -9,7 +9,8 @@ import os
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
-# 下载apache spark, 指定解压目录，下载地址：http://spark.apache.org/downloads.html
+# 如果运行失败,一定要配置os.environ['SPARK_HOME']的目录:
+# 下载apache spark, 指定解压目录, 下载地址：http://spark.apache.org/downloads.html
 os.environ['SPARK_HOME'] = '/Users/leiqiankun/spark-2.4.0'
 
 spark = PysparkPro().sc
