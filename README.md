@@ -1,12 +1,4 @@
-#### 简书博客: https://www.jianshu.com/u/3fe4aab60ac4
-#### 百度云搜索：http://www.lqkweb.com
-#### 搜网盘：http://www.swpan.cn
-#### 淘宝券搜索：http://www.wodecai.cn
-#### 淘宝券：http://www.tbquan.cn
-#### 你我搜：http://www.niwosou.cn
-#### 开源Flask+Bootstrap网址导航: http://hao.tbquan.cn
-
-开发交流QQ群: 941879291
+#### 开发交流QQ群: 941879291
 
 
 # SQLflow (python3.6)
