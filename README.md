@@ -78,5 +78,9 @@ select * from B limit 2
 
 # 记得给个star鼓励一下！Thanks♪(･ω･)ﾉ
 
+### 个人站点：
+### 百度云搜索 http://www.tbquan.cn
+### 淘宝券 http://www.tbquan.cn
+
 ----------
 [![HitCount](http://hits.dwyl.io/lqkweb/sqlflow.svg)](http://hits.dwyl.io/lqkweb/sqlflow)
