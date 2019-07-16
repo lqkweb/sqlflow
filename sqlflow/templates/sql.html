@@ -12,11 +12,13 @@
 {% block content %}
     <div class="container">
         SQLflow
-        <a href="/">Home</a>&nbsp; | &nbsp;<a href="{{ url_for('sql') }}">sql</a>&nbsp; | &nbsp;<a href="{{ url_for('script') }}">script</a>
+        <a href="/">Home</a>&nbsp; | &nbsp;<a href="{{ url_for('sql') }}">sql</a>&nbsp; | &nbsp;<a
+            href="{{ url_for('script') }}">script</a>
     </div>
     <div class="main">
         <h1 class="h1">SQLflow</h1>
-        <h5>去执行一下<a href="{{ url_for('script') }}">script</a>页面生成临时表A, 然后在此页面<a href="{{ url_for('sql') }}">sql</a>查询: select * from A</h5>
+        <h5>去执行一下<a href="{{ url_for('script') }}">script</a>页面生成临时表A, 然后在此页面<a href="{{ url_for('sql') }}">sql</a>查询:
+            select * from A</h5>
         <h6>【注】Table or view not found: 去执行一下<a href="{{ url_for('script') }}">script</a>页面生成临时表A</h6>
     </div>
     <textarea id="flask-codemirror-source_code" name="source_code" style="text-align: left;"></textarea>

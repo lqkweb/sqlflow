@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify
 from urllib.parse import unquote
 from dsl.lexer import lexer
 from dsl.parser import parser
-from session.baseclass import PysparkPro
+from pyspark.sql import SparkSession
 from execute.main import execute_main
 import os
 
@@ -13,7 +13,11 @@ app.secret_key = 'secret_key'
 # 下载apache spark, 指定解压目录, 下载地址：http://spark.apache.org/downloads.html
 os.environ['SPARK_HOME'] = '/Users/leiqiankun/spark-2.4.0'
 
-spark = PysparkPro().sc
+spark = SparkSession \
+            .builder \
+            .appName("sqlflow") \
+            .config("spark.some.config.option", "some-value") \
+            .getOrCreate()
 datadir = os.path.abspath(os.path.join(os.getcwd(), "..")) + "/data/"
 
 
@@ -54,10 +58,10 @@ def udf():
 
 @app.route('/runsql', methods=["POST", "GET"])
 def runsql():
-    sql = request.args.get("data", "")
-    if sql:
+    sql_str = request.args.get("data", "")
+    if sql_str:
         try:
-            datatem = spark.sql(sql.replace(";", ""))
+            datatem = spark.sql(sql_str.replace(";", ""))
             data = datatem.toJSON().collect()
         except Exception as e:
             print(str(e))
