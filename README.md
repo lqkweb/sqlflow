@@ -1,11 +1,4 @@
-#### 简书博客: https://www.jianshu.com/u/3fe4aab60ac4
-#### 代码搜索：http://code.kszixue.com
-#### 搜网盘：http://www.swpan.cn
-#### 淘宝券搜索：http://www.tbquan.cn
-#### 百度云搜索：http://www.lqkweb.com
-#### 开源Flask+Bootstrap网址导航: http://hao.tbquan.cn
-
-开发交流QQ群: 941879291
+#### 开发交流QQ群: 941879291
 
 
 # SQLflow (python3.6)
@@ -84,6 +77,10 @@ select * from B limit 2
 
 
 # 记得给个star鼓励一下！Thanks♪(･ω･)ﾉ
+
+### 个人站点：
+### 百度云搜索 http://www.lqkweb.com
+### 淘宝券 http://www.tbquan.cn
 
 ----------
 [![HitCount](http://hits.dwyl.io/lqkweb/sqlflow.svg)](http://hits.dwyl.io/lqkweb/sqlflow)
