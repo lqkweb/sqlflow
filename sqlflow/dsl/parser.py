@@ -8,29 +8,27 @@ from dsl import lexer
 tokens = lexer.tokens
 
 precedence = (
-    ('left', 'OR'),
     ('left', 'AND'),
-    ('nonassoc', 'LE', 'LE', 'GE', 'GT', 'EQ', 'NE'),
+    ('nonassoc', 'EQ'),
     # Nonassociative operators
 )
 
 
 def p_start(p):
-    """ start : command
-              | command ';' """
+    """ start : command ';' """
     p[0] = p[1]
 
 
 def p_command(p):
-    """ command : ddl
-                | dml
+    """ command : custom
+                | ssql
                 | utility
                 | nothing """
     p[0] = p[1]
 
 
-def p_ddl(p):
-    """ ddl : createtable
+def p_custom(p):
+    """ custom : createtable
             | createindex
             | droptable
             | dropindex
@@ -42,8 +40,8 @@ def p_ddl(p):
     p[0] = p[1]
 
 
-def p_dml(p):
-    """ dml : query
+def p_ssql(p):
+    """ ssql : query
             | insert
             | delete
             | update
@@ -62,9 +60,38 @@ def p_utility(p):
     p[0] = p[1]
 
 
+
+def p_createtable(p):
+    """ createtable : CREATE TABLE ID '(' non_mattrtype_list ')' """
+    p[0] = CreateTableNode(p[3], p[5])
+
+
+def p_createindex(p):
+    """ createindex : CREATE INDEX ID '(' ID ')' """
+    p[0] = CreateIndexNode(p[3], p[5])
+
+
+def p_droptable(p):
+    """ droptable : DROP TABLE ID """
+    p[0] = DropTableNode(p[3])
+
+
+def p_dropindex(p):
+    """ dropindex : DROP INDEX ID '(' ID ')' """
+    p[0] = DropIndexNode(p[3], p[5])
+
 def p_showtables(p):
     """ showtables : SHOW TABLES """
     p[0] = ShowTables()
+
+
+def p_alerttable(p):
+    """ alerttable : ALERT TABLE ID ADD attrtype
+                   | ALERT TABLE ID DROP non_mrelation_list """
+    if p[4].upper() == 'ADD':
+        p[0] = AlertNode(p[3], 'ADD', p[5])
+    else:
+        p[0] = AlertNode(p[3], 'DROP', p[5])
 
 
 def p_createuser(p):
@@ -102,33 +129,6 @@ def p_power_type(p):
     p[0] = p[1].upper()
 
 
-def p_alerttable(p):
-    """ alerttable : ALERT TABLE ID ADD attrtype
-                   | ALERT TABLE ID DROP non_mrelation_list """
-    if p[4].upper() == 'ADD':
-        p[0] = AlertNode(p[3], 'ADD', p[5])
-    else:
-        p[0] = AlertNode(p[3], 'DROP', p[5])
-
-
-def p_createtable(p):
-    """ createtable : CREATE TABLE ID '(' non_mattrtype_list ')' """
-    p[0] = CreateTableNode(p[3], p[5])
-
-
-def p_createindex(p):
-    """ createindex : CREATE INDEX ID '(' ID ')' """
-    p[0] = CreateIndexNode(p[3], p[5])
-
-
-def p_droptable(p):
-    """ droptable : DROP TABLE ID """
-    p[0] = DropTableNode(p[3])
-
-
-def p_dropindex(p):
-    """ dropindex : DROP INDEX ID '(' ID ')' """
-    p[0] = DropIndexNode(p[3], p[5])
 
 
 def p_print(p):
@@ -339,12 +339,7 @@ def p_null_value(p):
 
 
 def p_op(p):
-    """ op : LT
-           | LE
-           | GT
-           | GE
-           | EQ
-           | NE """
+    """ op : EQ """
     p[0] = p[1]
 
 
