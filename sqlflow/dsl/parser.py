@@ -8,27 +8,29 @@ from dsl import lexer
 tokens = lexer.tokens
 
 precedence = (
+    ('left', 'OR'),
     ('left', 'AND'),
-    ('nonassoc', 'EQ'),
+    ('nonassoc', 'LE', 'LE', 'GE', 'GT', 'EQ', 'NE'),
     # Nonassociative operators
 )
 
 
 def p_start(p):
-    """ start : command ';' """
+    """ start : command
+              | command ';' """
     p[0] = p[1]
 
 
 def p_command(p):
-    """ command : custom
-                | ssql
+    """ command : ddl
+                | dml
                 | utility
                 | nothing """
     p[0] = p[1]
 
 
-def p_custom(p):
-    """ custom : createtable
+def p_ddl(p):
+    """ ddl : createtable
             | createindex
             | droptable
             | dropindex
@@ -40,8 +42,8 @@ def p_custom(p):
     p[0] = p[1]
 
 
-def p_ssql(p):
-    """ ssql : query
+def p_dml(p):
+    """ dml : query
             | insert
             | delete
             | update
@@ -58,6 +60,12 @@ def p_utility(p):
     """ utility : exit
                 | print """
     p[0] = p[1]
+
+
+
+def p_nothing(p):
+    """ nothing : """
+    p[0] = None
 
 
 
@@ -79,6 +87,7 @@ def p_droptable(p):
 def p_dropindex(p):
     """ dropindex : DROP INDEX ID '(' ID ')' """
     p[0] = DropIndexNode(p[3], p[5])
+
 
 def p_showtables(p):
     """ showtables : SHOW TABLES """
@@ -109,38 +118,6 @@ def p_revokeuser(p):
     p[0] = RevokeUserNode(p[2], p[4], p[6])
 
 
-def p_power_list(p):
-    """ power_list : power_list ',' power_type
-                   | power_type """
-    if len(p) == 2:
-        p[0] = [p[1]]
-    else:
-        p[0] = p[1] + [p[3]]
-
-
-def p_power_type(p):
-    """  power_type : SELECT
-                    | UPDATE
-                    | INSERT
-                    | DELETE
-                    | PRINT
-                    | ALL
-    """
-    p[0] = p[1].upper()
-
-
-
-
-def p_print(p):
-    """ print : PRINT ID """
-    p[0] = PrintTable(p[2])
-
-
-def p_exit(p):
-    """ exit : EXIT """
-    p[0] = Exit()
-
-
 def p_query(p):
     """ query : SELECT non_mselect_clause FROM non_mrelation_list opwhere_clause oplimit_clause opas_clause """
     p[0] = QueryNode(p[2], p[4], p[5], p[6], p[7])
@@ -149,15 +126,6 @@ def p_query(p):
 def p_insert(p):
     """ insert : INSERT INTO ID VALUES inservalue_list """
     p[0] = InsertNode(p[3], p[5])
-
-
-def p_inservalue_list(p):
-    """ inservalue_list : '(' non_mvalue_list ')' ',' inservalue_list
-                        | '(' non_mvalue_list ')' """
-    if len(p) > 4:
-        p[0] = [p[2]] + p[5]
-    else:
-        p[0] = [p[2]]
 
 
 def p_delete(p):
@@ -198,6 +166,51 @@ def p_connect(p):
 def p_set(p):
     """ set : SET non_mselect_clause opas_clause """
     p[0] = SetNode(p[2], p[3])
+
+def p_power_list(p):
+    """ power_list : power_list ',' power_type
+                   | power_type """
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[3]]
+
+
+def p_power_type(p):
+    """  power_type : SELECT
+                    | UPDATE
+                    | INSERT
+                    | DELETE
+                    | PRINT
+                    | ALL
+    """
+    p[0] = p[1].upper()
+
+
+
+def p_print(p):
+    """ print : PRINT ID """
+    p[0] = PrintTable(p[2])
+
+
+def p_exit(p):
+    """ exit : EXIT """
+    p[0] = Exit()
+
+
+
+
+
+def p_inservalue_list(p):
+    """ inservalue_list : '(' non_mvalue_list ')' ',' inservalue_list
+                        | '(' non_mvalue_list ')' """
+    if len(p) > 4:
+        p[0] = [p[2]] + p[5]
+    else:
+        p[0] = [p[2]]
+
+
+
 
 
 def p_non_mattrtype_list(p):
@@ -339,13 +352,14 @@ def p_null_value(p):
 
 
 def p_op(p):
-    """ op : EQ """
+    """ op : LT
+           | LE
+           | GT
+           | GE
+           | EQ
+           | NE """
     p[0] = p[1]
 
-
-def p_nothing(p):
-    """ nothing : """
-    p[0] = None
 
 
 # Error rule for syntax errors

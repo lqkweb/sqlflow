@@ -5,23 +5,40 @@ import ply.lex as lex
 # List of token names.
 reversed = (
     # Main
-    'LOAD', 'HELP', 'SSQL', 'WHERE','AND','AS',
-    'TRAIN', 'REGISTER', 'SAVE', 'CONNECT', 'SET', 'OVERWRITE',
-    # Scikit-learn
-    'SKLEARN', 'KNN'
+    'CREATE', 'TABLE', 'DROP', 'SHOW', 'ALTER', 'SELECT', 'FROM', 'WHERE',
+    'INSERT', 'DELETE', 'UPDATE', 'VIEW', 'USER', 'REVOKE', 'GRANT',
+    'INDEX', 'LOAD', 'INTO', 'VALUES', 'TABLES', 'ALERT', 'ADD', "ON",
+    "TO", 'LIMIT',
+    'PASSWORD',
+    # Modifier
+    'PRIMARY', 'KEY', 'DESC', 'ASC', 'ALL',
+    # Const Value
+    'NULL',
+    # Command
+    'HELP', 'PRINT', 'EXIT', 'SPARKSQL',
+    # Operator
+    'AND', 'OR', 'IS', 'NOT',
+    # Type
+    'INT', 'CHAR', 'AS',
+    'TRAIN', 'REGISTER', 'SAVE', 'CONNECT', 'SET', 'OVERWRITE', 'JDBC',
 )
 
 tokens = reversed + (
     # Symbol
     'ID', 'NUMBER', 'STRING',
     # Operator
-    'EQ',
+    'EQ', 'LT', 'LE', 'GT', 'GE', 'NE',
 )
 
 # Regular expression rules for simple tokens
 t_EQ = r'='
+t_GT = r'>'
+t_GE = r'>='
+t_LT = r'<'
+t_LE = r'<='
+t_NE = r'!='
 
-literals = ['(', ')', ',', ';', '.']
+literals = ['(', ')', ',', ';', '.', '+', '-', '*', '/']
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
