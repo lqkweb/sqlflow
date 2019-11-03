@@ -13,7 +13,7 @@ ply==3.11
 py4j==0.10.7
 pyspark==2.4.0
 python-dateutil==2.7.5
-python-engineio==2.2.0
+python-engineio==3.8.2.post1
 python-socketio==2.0.0
 pytz==2018.9
 requests==2.21.0
