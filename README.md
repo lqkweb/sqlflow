@@ -2,7 +2,7 @@
 ### 推荐：
 
 - 百度云搜索 [http://www.lqkweb.com](http://www.lqkweb.com/)
-- 淘宝券 [http://www.tbquan.cn](http://www.tbquan.cn/)
+- 淘宝券(大额优惠券) [http://www.tbquan.cn](http://www.tbquan.cn/)
 
 # SQLflow (python3.6)
 
