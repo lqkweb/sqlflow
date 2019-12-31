@@ -1,4 +1,8 @@
 #### 开发交流QQ群: 941879291
+### 推荐：
+
+- 百度云搜索 [http://www.lqkweb.com](http://www.lqkweb.com/)
+- 淘宝券 [http://www.tbquan.cn](http://www.tbquan.cn/)
 
 # SQLflow (python3.6)
 
@@ -76,10 +80,5 @@ select * from B limit 2
 
 # 记得给个star鼓励一下！Thanks♪(･ω･)ﾉ
 
-### 个人站点：
-
-### 百度云搜索 [http://www.lqkweb.com](http://www.lqkweb.com/)
-
-### 淘宝券 [http://www.tbquan.cn](http://www.tbquan.cn/)
 
 
