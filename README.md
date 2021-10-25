@@ -1,7 +1,7 @@
 #### 开发交流QQ群: 941879291
 ### 推荐：
 
-- 百度云搜索 [http://www.lqkweb.com](http://www.lqkweb.com/)
+- 速站群 [https://www.suzhanqun.com](https://www.suzhanqun.com)
 - 淘宝券(大额优惠券) [http://www.tbquan.com](http://www.tbquan.com/)
 
 # SQLflow (python3.6)
