@@ -1,7 +1,7 @@
 #### 开发交流QQ群: 941879291
 ### 推荐：
 
-- 速站群 [http://www.aiyuncha.com](https://www.aiyuncha.com)
+- 站长工具 [http://www.aiyuncha.com](https://www.aiyuncha.com)
 
 # SQLflow (python3.6)
 
