@@ -1,8 +1,4 @@
 #### 开发交流QQ群: 941879291
-### 推荐：
-
-- 站长工具 [http://www.aiyuncha.com](https://www.aiyuncha.com)
-
 # SQLflow (python3.6)
 
 [![image](https://camo.githubusercontent.com/6ff64ec221e68a362bab8af56f39c1ab2cd46ce1/68747470733a2f2f696d672e736869656c64732e696f2f707970692f6c2f72657175657374732e737667)](https://github.com/kennethreitz/requests/blob/master/LICENSE)[![HitCount](https://camo.githubusercontent.com/46429a8e0eb6868a9c97e09a0e8e766d7c92e595/687474703a2f2f686974732e6477796c2e696f2f6c716b7765622f73716c666c6f772e737667)](http://hits.dwyl.io/lqkweb/sqlflow)
